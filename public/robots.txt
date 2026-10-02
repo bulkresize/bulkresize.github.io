@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bulkresize.github.io/sitemap-index.xml

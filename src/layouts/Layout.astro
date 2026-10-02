@@ -1,0 +1,35 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SeoHead from '../components/SeoHead.astro';
+import ThemeScript from '../components/ThemeScript.astro';
+import type { SupportedLocale } from '../i18n/ui';
+import '../styles/global.css';
+
+export interface Props {
+  locale: SupportedLocale;
+}
+
+const { locale } = Astro.props;
+---
+
+<!doctype html>
+<html lang={locale} class="scroll-smooth">
+  <head>
+    <ThemeScript />
+    <SeoHead locale={locale} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="min-h-screen flex flex-col bg-[#FCF0DA] dark:bg-[#231f1d] text-[#4C4541] dark:text-[#FCF0DA] selection:bg-[#F2C46A] selection:text-[#4C4541] antialiased transition-colors duration-200">
+    <Header locale={locale} />
+    <main class="flex-grow">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+  </body>
+</html>

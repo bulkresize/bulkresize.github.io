@@ -1,0 +1,106 @@
+---
+import { languages, defaultLocale, translations, type SupportedLocale } from '../i18n/ui';
+import { getLocalizedPath } from '../i18n/utils';
+
+export interface Props {
+  locale: SupportedLocale;
+}
+
+const { locale } = Astro.props;
+const t = translations[locale] || translations[defaultLocale];
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="border-t border-[#4C4541]/15 dark:border-[#FCF0DA]/15 bg-[#f8ebd5] dark:bg-[#1e1a19] transition-colors py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+      <!-- Col 1: Brand & Privacy -->
+      <div class="md:col-span-2 space-y-4">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-[#4C4541] dark:bg-[#F2C46A] flex items-center justify-center text-[#FCF0DA] dark:text-[#4C4541] font-bold text-sm">
+            BR
+          </div>
+          <span class="text-lg font-bold text-[#4C4541] dark:text-[#FCF0DA]">
+            Bulk<span class="text-[#c68a25] dark:text-[#F2C46A]">Resize</span>
+          </span>
+        </div>
+        <p class="text-sm text-[#4C4541]/75 dark:text-[#FCF0DA]/75 max-w-md leading-relaxed">
+          {t.footer.builtWith}
+        </p>
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#AEAC78]/25 text-[#4C4541] dark:text-[#FCF0DA] border border-[#AEAC78]/40 text-xs font-semibold">
+          <svg class="w-4 h-4 shrink-0 text-[#AEAC78]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          </svg>
+          <span>{t.footer.privacyNote}</span>
+        </div>
+      </div>
+
+      <!-- Col 2: Navigation -->
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-wider text-[#4C4541] dark:text-[#FCF0DA] mb-3">
+          Navigation
+        </h3>
+        <ul class="space-y-2 text-sm text-[#4C4541]/75 dark:text-[#FCF0DA]/75">
+          <li><a href="#workspace" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition">Resizer Workspace</a></li>
+          <li><a href="#features" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition">{t.nav.features}</a></li>
+          <li><a href="#how-it-works" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition">{t.nav.howItWorks}</a></li>
+          <li><a href="#presets" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition">{t.nav.presets}</a></li>
+          <li><a href="#faq" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition">{t.nav.faq}</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Languages & Creator -->
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-wider text-[#4C4541] dark:text-[#FCF0DA] mb-3">
+          Languages
+        </h3>
+        <div class="grid grid-cols-2 gap-2 text-xs text-[#4C4541]/75 dark:text-[#FCF0DA]/75">
+          {Object.entries(languages).map(([code, info]) => (
+            <a
+              href={getLocalizedPath('/', code as SupportedLocale)}
+              class={`hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition flex items-center gap-1.5 ${
+                code === locale ? 'font-bold text-[#c68a25] dark:text-[#F2C46A]' : ''
+              }`}
+            >
+              <span>{info.flag}</span>
+              <span>{info.label}</span>
+            </a>
+          ))}
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-[#4C4541]/15 dark:border-[#FCF0DA]/15">
+          <a
+            href="https://buymeacoffee.com/kisharadilz"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 text-xs font-bold text-[#c68a25] dark:text-[#F2C46A] hover:underline"
+          >
+            ☕ {t.footer.supportDev} →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="pt-8 border-t border-[#4C4541]/15 dark:border-[#FCF0DA]/15 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#4C4541]/70 dark:text-[#FCF0DA]/70">
+      <p>© {currentYear} BulkResize. {t.footer.allRights}</p>
+      <div class="flex items-center gap-4">
+        <a
+          href="https://github.com/bulkresize/bulkresize.github.io"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-[#4C4541] dark:hover:text-[#FCF0DA] transition flex items-center gap-1.5"
+        >
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+          </svg>
+          <span>GitHub</span>
+        </a>
+        <span>•</span>
+        <a href="https://buymeacoffee.com/kisharadilz" target="_blank" rel="noopener noreferrer" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition">
+          Buy Me A Coffee
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

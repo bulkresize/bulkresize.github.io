@@ -1,0 +1,17 @@
+{
+  "name": "BulkResize | Free Client-Side Bulk Image Resizer",
+  "short_name": "BulkResize",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FCF0DA",
+  "theme_color": "#F2C46A",
+  "description": "Resize, compress, and convert hundreds of images simultaneously directly in your browser with zero file uploads."
+}

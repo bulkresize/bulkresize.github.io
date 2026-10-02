@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #FCF0DA;
+    --bg-secondary: #f6e7cb;
+    --text-primary: #4C4541;
+    --text-secondary: #6e6560;
+    --border-color: rgba(76, 69, 65, 0.16);
+    --accent-gold: #F2C46A;
+    --accent-sage: #AEAC78;
+  }
+
+  .dark {
+    --bg-primary: #231f1d;
+    --bg-secondary: #2f2a28;
+    --text-primary: #FCF0DA;
+    --text-secondary: #dcd4c5;
+    --border-color: rgba(252, 240, 218, 0.16);
+    --accent-gold: #F2C46A;
+    --accent-sage: #AEAC78;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #AEAC78;
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #58514d;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #95935f;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #777549;
+}
+
+/* Selection */
+::selection {
+  background-color: #F2C46A;
+  color: #4C4541;
+}
+
+/* Range slider styling */
+input[type=range] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #F2C46A;
+  border: 2px solid #4C4541;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(76, 69, 65, 0.2);
+  transition: transform 0.1s ease, background-color 0.15s ease;
+  margin-top: -6px;
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
+  transform: scale(1.18);
+  background: #e5ab3f;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8px;
+  cursor: pointer;
+  border-radius: 9999px;
+  background: rgba(76, 69, 65, 0.18);
+}
+
+.dark input[type=range]::-webkit-slider-runnable-track {
+  background: rgba(252, 240, 218, 0.22);
+}

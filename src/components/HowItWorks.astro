@@ -1,0 +1,67 @@
+---
+import { defaultLocale, translations, type SupportedLocale } from '../i18n/ui';
+
+export interface Props {
+  locale: SupportedLocale;
+}
+
+const { locale } = Astro.props;
+const t = translations[locale] || translations[defaultLocale];
+---
+
+<section id="how-it-works" class="py-16 md:py-24 border-t border-[#4C4541]/15 dark:border-[#FCF0DA]/15 bg-[#f8ebd5]/50 dark:bg-[#201c1b]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#AEAC78]/25 text-[#4C4541] dark:text-[#FCF0DA] border border-[#AEAC78]/50 mb-4">
+        {t.howItWorks.sectionBadge}
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-[#4C4541] dark:text-[#FCF0DA] tracking-tight">
+        {t.howItWorks.title}
+      </h2>
+      <p class="mt-4 text-base sm:text-lg text-[#4C4541]/80 dark:text-[#FCF0DA]/80">
+        {t.howItWorks.subtitle}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+      <!-- Step 1 -->
+      <div class="flex flex-col items-center text-center p-8 rounded-3xl bg-[#FCF0DA] dark:bg-[#2c2624] border border-[#4C4541]/15 dark:border-[#FCF0DA]/15 shadow-sm relative z-10">
+        <div class="w-14 h-14 rounded-2xl bg-[#4C4541] dark:bg-[#F2C46A] text-[#FCF0DA] dark:text-[#4C4541] flex items-center justify-center font-extrabold text-xl shadow-md shadow-[#4C4541]/10 mb-6">
+          1
+        </div>
+        <h3 class="text-lg font-bold text-[#4C4541] dark:text-[#FCF0DA] mb-3">
+          {t.howItWorks.step1_title}
+        </h3>
+        <p class="text-sm text-[#4C4541]/75 dark:text-[#FCF0DA]/70 leading-relaxed">
+          {t.howItWorks.step1_desc}
+        </p>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="flex flex-col items-center text-center p-8 rounded-3xl bg-[#FCF0DA] dark:bg-[#2c2624] border border-[#4C4541]/15 dark:border-[#FCF0DA]/15 shadow-sm relative z-10">
+        <div class="w-14 h-14 rounded-2xl bg-[#AEAC78] text-[#FCF0DA] flex items-center justify-center font-extrabold text-xl shadow-md shadow-[#AEAC78]/20 mb-6">
+          2
+        </div>
+        <h3 class="text-lg font-bold text-[#4C4541] dark:text-[#FCF0DA] mb-3">
+          {t.howItWorks.step2_title}
+        </h3>
+        <p class="text-sm text-[#4C4541]/75 dark:text-[#FCF0DA]/70 leading-relaxed">
+          {t.howItWorks.step2_desc}
+        </p>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="flex flex-col items-center text-center p-8 rounded-3xl bg-[#FCF0DA] dark:bg-[#2c2624] border border-[#4C4541]/15 dark:border-[#FCF0DA]/15 shadow-sm relative z-10">
+        <div class="w-14 h-14 rounded-2xl bg-[#F2C46A] text-[#4C4541] flex items-center justify-center font-extrabold text-xl shadow-md shadow-[#F2C46A]/20 mb-6">
+          3
+        </div>
+        <h3 class="text-lg font-bold text-[#4C4541] dark:text-[#FCF0DA] mb-3">
+          {t.howItWorks.step3_title}
+        </h3>
+        <p class="text-sm text-[#4C4541]/75 dark:text-[#FCF0DA]/70 leading-relaxed">
+          {t.howItWorks.step3_desc}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

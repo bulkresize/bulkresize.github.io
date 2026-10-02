@@ -1,0 +1,58 @@
+---
+import { defaultLocale, translations, type SupportedLocale } from '../i18n/ui';
+
+export interface Props {
+  locale: SupportedLocale;
+}
+
+const { locale } = Astro.props;
+const t = translations[locale] || translations[defaultLocale];
+
+const faqs = [
+  { q: t.faq.q1, a: t.faq.a1 },
+  { q: t.faq.q2, a: t.faq.a2 },
+  { q: t.faq.q3, a: t.faq.a3 },
+  { q: t.faq.q4, a: t.faq.a4 },
+  { q: t.faq.q5, a: t.faq.a5 },
+  { q: t.faq.q6, a: t.faq.a6 },
+  { q: t.faq.q7, a: t.faq.a7 },
+  { q: t.faq.q8, a: t.faq.a8 },
+];
+---
+
+<section id="faq" class="py-16 md:py-24 border-t border-[#4C4541]/15 dark:border-[#FCF0DA]/15 bg-[#f8ebd5]/50 dark:bg-[#201c1b]">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#AEAC78]/25 text-[#4C4541] dark:text-[#FCF0DA] border border-[#AEAC78]/50 mb-4">
+        {t.faq.sectionBadge}
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-[#4C4541] dark:text-[#FCF0DA] tracking-tight">
+        {t.faq.title}
+      </h2>
+      <p class="mt-4 text-base sm:text-lg text-[#4C4541]/80 dark:text-[#FCF0DA]/80">
+        {t.faq.subtitle}
+      </p>
+    </div>
+
+    <!-- Accordion List -->
+    <div class="space-y-4">
+      {faqs.map((faq) => (
+        <details class="group rounded-3xl border border-[#4C4541]/15 dark:border-[#FCF0DA]/15 bg-[#FCF0DA] dark:bg-[#2c2624] p-5 sm:p-6 transition shadow-sm open:shadow-md [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex items-center justify-between cursor-pointer list-none select-none">
+            <span class="text-base sm:text-lg font-bold text-[#4C4541] dark:text-[#FCF0DA] group-hover:text-[#c68a25] dark:group-hover:text-[#F2C46A] transition pr-4">
+              {faq.q}
+            </span>
+            <div class="w-8 h-8 rounded-full bg-[#ebdcc0] dark:bg-[#3a3330] flex items-center justify-center shrink-0 text-[#4C4541] dark:text-[#FCF0DA] group-hover:text-[#c68a25] dark:group-hover:text-[#F2C46A] transition group-open:rotate-180">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </summary>
+          <div class="mt-4 pt-4 border-t border-[#4C4541]/10 dark:border-[#FCF0DA]/10 text-sm sm:text-base text-[#4C4541]/80 dark:text-[#FCF0DA]/80 leading-relaxed">
+            {faq.a}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,78 @@
+---
+import { defaultLocale, translations, type SupportedLocale } from '../i18n/ui';
+
+export interface Props {
+  locale: SupportedLocale;
+}
+
+const { locale } = Astro.props;
+const t = translations[locale] || translations[defaultLocale];
+
+const presetsData = [
+  { platform: 'Instagram Post (Square)', ratio: '1:1', dimensions: '1080 × 1080 px', format: 'WebP / JPEG', usage: 'Feed photo' },
+  { platform: 'Instagram Story / Reel', ratio: '9:16', dimensions: '1080 × 1920 px', format: 'WebP / JPEG', usage: 'Full screen vertical' },
+  { platform: 'Instagram Landscape', ratio: '1.91:1', dimensions: '1080 × 566 px', format: 'WebP / JPEG', usage: 'Horizontal feed' },
+  { platform: 'X / Twitter Post', ratio: '16:9', dimensions: '1200 × 675 px', format: 'WebP / PNG', usage: 'In-stream tweet' },
+  { platform: 'X / Twitter Header', ratio: '3:1', dimensions: '1500 × 500 px', format: 'WebP / JPEG', usage: 'Profile banner' },
+  { platform: 'YouTube Thumbnail', ratio: '16:9', dimensions: '1280 × 720 px', format: 'WebP / JPEG (<2MB)', usage: 'Video preview' },
+  { platform: 'YouTube Channel Banner', ratio: '16:9', dimensions: '2560 × 1440 px', format: 'WebP / PNG', usage: 'Channel desktop/TV' },
+  { platform: 'Facebook Feed Post', ratio: '1.91:1', dimensions: '1200 × 630 px', format: 'WebP / JPEG', usage: 'Timeline post' },
+  { platform: 'LinkedIn Cover Banner', ratio: '4:1', dimensions: '1584 × 396 px', format: 'PNG / WebP', usage: 'Personal profile' },
+  { platform: 'Full HD Display', ratio: '16:9', dimensions: '1920 × 1080 px', format: 'WebP', usage: 'Desktop wallpaper / Web' },
+  { platform: '2K QHD', ratio: '16:9', dimensions: '2560 × 1440 px', format: 'WebP', usage: 'High-res desktop' },
+  { platform: '4K Ultra HD', ratio: '16:9', dimensions: '3840 × 2160 px', format: 'WebP', usage: '4K screens & prints' },
+  { platform: 'Website Hero Banner', ratio: '16:9', dimensions: '1600 × 900 px', format: 'WebP (Lossy 82%)', usage: 'Landing page header' },
+  { platform: 'Favicon / Web App Icon', ratio: '1:1', dimensions: '512 × 512 px', format: 'PNG', usage: 'PWA / browser tab' },
+];
+---
+
+<section id="presets" class="py-16 md:py-24 border-t border-[#4C4541]/15 dark:border-[#FCF0DA]/15 bg-[#FCF0DA] dark:bg-[#231f1d]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#AEAC78]/25 text-[#4C4541] dark:text-[#FCF0DA] border border-[#AEAC78]/50 mb-4">
+        {t.cheatSheet.sectionBadge}
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-[#4C4541] dark:text-[#FCF0DA] tracking-tight">
+        {t.cheatSheet.title}
+      </h2>
+      <p class="mt-4 text-base sm:text-lg text-[#4C4541]/80 dark:text-[#FCF0DA]/80">
+        {t.cheatSheet.subtitle}
+      </p>
+    </div>
+
+    <!-- Responsive Table -->
+    <div class="overflow-x-auto rounded-3xl border border-[#4C4541]/15 dark:border-[#FCF0DA]/15 shadow-sm bg-[#FCF0DA] dark:bg-[#2c2624]">
+      <table class="w-full text-left border-collapse text-sm">
+        <thead>
+          <tr class="border-b border-[#4C4541]/15 dark:border-[#FCF0DA]/15 bg-[#f8ebd5] dark:bg-[#342e2b] text-xs font-bold uppercase tracking-wider text-[#4C4541] dark:text-[#FCF0DA]">
+            <th class="py-4 px-6">{t.cheatSheet.platformCol}</th>
+            <th class="py-4 px-6">{t.cheatSheet.ratioCol}</th>
+            <th class="py-4 px-6">{t.cheatSheet.dimCol}</th>
+            <th class="py-4 px-6">{t.cheatSheet.bestFormatCol}</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-[#4C4541]/10 dark:divide-[#FCF0DA]/10">
+          {presetsData.map((row) => (
+            <tr class="hover:bg-[#f8ebd5]/60 dark:hover:bg-[#342e2b]/50 transition">
+              <td class="py-3.5 px-6 font-bold text-[#4C4541] dark:text-[#FCF0DA]">
+                <div>{row.platform}</div>
+                <div class="text-xs text-[#4C4541]/70 dark:text-[#FCF0DA]/70 font-normal">{row.usage}</div>
+              </td>
+              <td class="py-3.5 px-6 font-mono text-xs text-[#4C4541] dark:text-[#FCF0DA]">
+                <span class="px-2 py-0.5 rounded-md bg-[#ebdcc0] dark:bg-[#38312e] font-bold">{row.ratio}</span>
+              </td>
+              <td class="py-3.5 px-6 font-mono text-xs font-bold text-[#c68a25] dark:text-[#F2C46A]">
+                {row.dimensions}
+              </td>
+              <td class="py-3.5 px-6 text-xs text-[#4C4541] dark:text-[#FCF0DA]">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#AEAC78]/25 text-[#4C4541] dark:text-[#FCF0DA] border border-[#AEAC78]/40">
+                  {row.format}
+                </span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

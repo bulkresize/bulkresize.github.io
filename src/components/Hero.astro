@@ -1,0 +1,64 @@
+---
+import { defaultLocale, translations, type SupportedLocale } from '../i18n/ui';
+
+export interface Props {
+  locale: SupportedLocale;
+}
+
+const { locale } = Astro.props;
+const t = translations[locale] || translations[defaultLocale];
+---
+
+<section class="relative overflow-hidden pt-12 pb-6 md:pt-16 md:pb-8 bg-gradient-to-b from-[#f8ecd5]/60 via-[#FCF0DA] to-[#FCF0DA] dark:from-[#2a2422]/60 dark:via-[#231f1d] dark:to-[#231f1d]">
+  <!-- Subtle background glow decoration using palette colors -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-[#F2C46A]/15 dark:bg-[#F2C46A]/10 blur-[100px] pointer-events-none rounded-full" aria-hidden="true"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+    <!-- Top Privacy Trust Badge -->
+    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-[#AEAC78]/25 text-[#4C4541] dark:text-[#FCF0DA] border border-[#AEAC78]/50 mb-6 shadow-sm">
+      <span class="w-2 h-2 rounded-full bg-[#F2C46A] animate-pulse"></span>
+      <span>{t.hero.badge}</span>
+    </div>
+
+    <!-- Main Title with vivid highlight -->
+    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#4C4541] dark:text-[#FCF0DA] max-w-4xl mx-auto leading-[1.15]">
+      {t.hero.h1_start}{' '}
+      <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#c68a25] via-[#F2C46A] to-[#AEAC78] dark:from-[#F2C46A] dark:via-[#fadfa5] dark:to-[#AEAC78]">
+        {t.hero.h1_highlight}
+      </span>
+    </h1>
+
+    <!-- Subtitle -->
+    <p class="mt-5 text-base sm:text-lg text-[#4C4541]/80 dark:text-[#FCF0DA]/80 max-w-2xl mx-auto leading-relaxed">
+      {t.hero.subtitle}
+    </p>
+
+    <!-- Key Bullet Badges -->
+    <div class="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs sm:text-sm font-semibold text-[#4C4541] dark:text-[#FCF0DA]">
+      <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#f5e5c9]/80 dark:bg-[#342e2b]/80 border border-[#4C4541]/15 dark:border-[#FCF0DA]/15 shadow-xs">
+        <svg class="w-4 h-4 text-[#AEAC78]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span>{t.hero.feature1}</span>
+      </div>
+      <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#f5e5c9]/80 dark:bg-[#342e2b]/80 border border-[#4C4541]/15 dark:border-[#FCF0DA]/15 shadow-xs">
+        <svg class="w-4 h-4 text-[#AEAC78]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span>{t.hero.feature2}</span>
+      </div>
+      <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#f5e5c9]/80 dark:bg-[#342e2b]/80 border border-[#4C4541]/15 dark:border-[#FCF0DA]/15 shadow-xs">
+        <svg class="w-4 h-4 text-[#AEAC78]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span>{t.hero.feature3}</span>
+      </div>
+      <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#f5e5c9]/80 dark:bg-[#342e2b]/80 border border-[#4C4541]/15 dark:border-[#FCF0DA]/15 shadow-xs">
+        <svg class="w-4 h-4 text-[#AEAC78]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span>{t.hero.feature4}</span>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,203 @@
+---
+import { languages, defaultLocale, translations, type SupportedLocale } from '../i18n/ui';
+import { getLocalizedPath } from '../i18n/utils';
+
+export interface Props {
+  locale: SupportedLocale;
+}
+
+const { locale } = Astro.props;
+const t = translations[locale] || translations[defaultLocale];
+const currentLanguage = languages[locale] || languages.en;
+const supportUrl = 'https://buymeacoffee.com/kisharadilz';
+---
+
+<header class="sticky top-0 z-50 w-full backdrop-blur-md bg-[#FCF0DA]/90 dark:bg-[#231f1d]/90 border-b border-[#4C4541]/15 dark:border-[#FCF0DA]/15 transition-colors duration-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+    <!-- Brand Logo -->
+    <a
+      href={getLocalizedPath('/', locale)}
+      class="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F2C46A] rounded-lg p-1"
+      aria-label="BulkResize Home"
+    >
+      <div class="relative w-9 h-9 rounded-xl bg-[#4C4541] dark:bg-[#F2C46A] flex items-center justify-center shadow-md shadow-[#4C4541]/10 group-hover:scale-105 transition-transform duration-200">
+        <svg class="w-5 h-5 text-[#FCF0DA] dark:text-[#4C4541]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+          <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+          <line x1="12" y1="22.08" x2="12" y2="12"></line>
+        </svg>
+        <span class="absolute -top-1 -right-1 flex h-3 w-3">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#AEAC78] opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-[#AEAC78] border-2 border-[#FCF0DA] dark:border-[#231f1d]"></span>
+        </span>
+      </div>
+      <div class="flex flex-col">
+        <div class="flex items-center gap-1.5">
+          <span class="text-xl font-bold tracking-tight text-[#4C4541] dark:text-[#FCF0DA] font-sans">
+            Bulk<span class="text-[#c68a25] dark:text-[#F2C46A]">Resize</span>
+          </span>
+          <span class="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider rounded-md bg-[#AEAC78]/20 text-[#4C4541] dark:text-[#FCF0DA] border border-[#AEAC78]/40">
+            Free & Local
+          </span>
+        </div>
+        <span class="text-[11px] text-[#4C4541]/70 dark:text-[#FCF0DA]/70 -mt-0.5 hidden md:inline">100% Client-Side Engine</span>
+      </div>
+    </a>
+
+    <!-- Quick Navigation Links (Desktop) -->
+    <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-[#4C4541]/80 dark:text-[#FCF0DA]/80">
+      <a href="#workspace" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition-colors">Resizer</a>
+      <a href="#features" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition-colors">{t.nav.features}</a>
+      <a href="#how-it-works" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition-colors">{t.nav.howItWorks}</a>
+      <a href="#presets" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition-colors">{t.nav.presets}</a>
+      <a href="#faq" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition-colors">{t.nav.faq}</a>
+    </nav>
+
+    <!-- Header Actions (Language, Theme Toggle, Support CTA) -->
+    <div class="flex items-center gap-2 sm:gap-3">
+      <!-- Language Selector Dropdown -->
+      <div class="relative" id="lang-selector-container">
+        <button
+          type="button"
+          id="lang-menu-btn"
+          aria-expanded="false"
+          aria-haspopup="true"
+          class="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold rounded-lg border border-[#4C4541]/15 dark:border-[#FCF0DA]/15 bg-[#f5e5c9] dark:bg-[#342e2b] text-[#4C4541] dark:text-[#FCF0DA] hover:bg-[#edd9b9] dark:hover:bg-[#443c38] transition focus:outline-none focus:ring-2 focus:ring-[#F2C46A]"
+        >
+          <span class="text-sm">{currentLanguage.flag}</span>
+          <span class="hidden sm:inline">{currentLanguage.label}</span>
+          <svg class="w-3.5 h-3.5 text-[#4C4541]/60 dark:text-[#FCF0DA]/60" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </button>
+
+        <!-- Dropdown menu -->
+        <div
+          id="lang-dropdown-menu"
+          class="hidden absolute right-0 mt-2 w-44 rounded-xl border border-[#4C4541]/15 dark:border-[#FCF0DA]/15 bg-[#FCF0DA] dark:bg-[#342e2b] shadow-xl py-1.5 z-50 text-xs font-medium focus:outline-none animate-in fade-in-50 duration-150"
+        >
+          {Object.entries(languages).map(([code, info]) => {
+            const isSelected = code === locale;
+            const targetPath = getLocalizedPath(Astro.url.pathname, code as SupportedLocale);
+            return (
+              <a
+                href={targetPath}
+                class={`flex items-center justify-between px-3 py-2 text-[#4C4541] dark:text-[#FCF0DA] hover:bg-[#F2C46A]/20 dark:hover:bg-[#4C4541] transition ${
+                  isSelected ? 'bg-[#F2C46A]/30 dark:bg-[#4C4541] font-bold text-[#4C4541] dark:text-[#F2C46A]' : ''
+                }`}
+              >
+                <span class="flex items-center gap-2">
+                  <span class="text-base">{info.flag}</span>
+                  <span>{info.label}</span>
+                </span>
+                {isSelected && (
+                  <svg class="w-3.5 h-3.5 text-[#4C4541] dark:text-[#F2C46A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                )}
+              </a>
+            );
+          })}
+        </div>
+      </div>
+
+      <!-- Theme Switcher Button -->
+      <button
+        type="button"
+        id="theme-toggle-btn"
+        aria-label={t.nav.toggleTheme}
+        title={t.nav.toggleTheme}
+        class="p-2 rounded-lg border border-[#4C4541]/15 dark:border-[#FCF0DA]/15 bg-[#f5e5c9] dark:bg-[#342e2b] text-[#4C4541] dark:text-[#FCF0DA] hover:bg-[#edd9b9] dark:hover:bg-[#443c38] transition focus:outline-none focus:ring-2 focus:ring-[#F2C46A]"
+      >
+        <!-- Sun icon (shown in dark mode) -->
+        <svg id="theme-sun-icon" class="w-4 h-4 hidden text-[#F2C46A]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <!-- Moon icon (shown in light mode) -->
+        <svg id="theme-moon-icon" class="w-4 h-4 hidden text-[#4C4541]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+
+      <!-- Prominent Support Developer CTA -->
+      <a
+        href={supportUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 sm:py-2 text-xs font-bold rounded-lg text-[#4C4541] bg-[#F2C46A] hover:bg-[#e5ab3f] shadow-sm hover:shadow transition transform active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#F2C46A]"
+      >
+        <svg class="w-4 h-4 text-[#4C4541]" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M2,21H20V19H2M20,8H18V5H20M20,3H4V13A4,4 0 0,0 8,17H14A4,4 0 0,0 18,13V10H20A2,2 0 0,0 22,8V5C22,3.89 21.1,3 20,3Z" />
+        </svg>
+        <span class="whitespace-nowrap">{t.nav.supportDev}</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  // Language dropdown toggle
+  const langBtn = document.getElementById('lang-menu-btn');
+  const langMenu = document.getElementById('lang-dropdown-menu');
+
+  if (langBtn && langMenu) {
+    langBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isHidden = langMenu.classList.contains('hidden');
+      if (isHidden) {
+        langMenu.classList.remove('hidden');
+        langBtn.setAttribute('aria-expanded', 'true');
+      } else {
+        langMenu.classList.add('hidden');
+        langBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!langMenu.contains(e.target) && !langBtn.contains(e.target)) {
+        langMenu.classList.add('hidden');
+        langBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  // Theme switcher
+  const themeToggleBtn = document.getElementById('theme-toggle-btn');
+  const sunIcon = document.getElementById('theme-sun-icon');
+  const moonIcon = document.getElementById('theme-moon-icon');
+
+  function updateThemeIcons() {
+    const isDark = document.documentElement.classList.contains('dark');
+    if (isDark) {
+      sunIcon?.classList.remove('hidden');
+      moonIcon?.classList.add('hidden');
+    } else {
+      moonIcon?.classList.remove('hidden');
+      sunIcon?.classList.add('hidden');
+    }
+  }
+
+  updateThemeIcons();
+
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      if (isDark) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('bulkresize_theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('bulkresize_theme', 'dark');
+      }
+      updateThemeIcons();
+    });
+  }
+</script>

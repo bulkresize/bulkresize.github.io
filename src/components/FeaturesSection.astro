@@ -1,0 +1,118 @@
+---
+import { defaultLocale, translations, type SupportedLocale } from '../i18n/ui';
+
+export interface Props {
+  locale: SupportedLocale;
+}
+
+const { locale } = Astro.props;
+const t = translations[locale] || translations[defaultLocale];
+---
+
+<section id="features" class="py-16 md:py-24 border-t border-[#4C4541]/15 dark:border-[#FCF0DA]/15 bg-[#FCF0DA] dark:bg-[#231f1d]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#AEAC78]/25 text-[#4C4541] dark:text-[#FCF0DA] border border-[#AEAC78]/50 mb-4">
+        {t.features.sectionBadge}
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-[#4C4541] dark:text-[#FCF0DA] tracking-tight">
+        {t.features.title}
+      </h2>
+      <p class="mt-4 text-base sm:text-lg text-[#4C4541]/80 dark:text-[#FCF0DA]/80">
+        {t.features.subtitle}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Feature 1: 100% Client-Side Privacy -->
+      <div class="relative group p-6 rounded-3xl border border-[#4C4541]/15 dark:border-[#FCF0DA]/15 bg-[#f8ebd5]/60 dark:bg-[#2c2624] hover:bg-[#FCF0DA] dark:hover:bg-[#342e2b] hover:shadow-xl hover:shadow-[#4C4541]/5 hover:border-[#AEAC78] transition duration-300">
+        <div class="w-12 h-12 rounded-2xl bg-[#AEAC78]/25 text-[#4C4541] dark:text-[#AEAC78] flex items-center justify-center mb-5">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-[#4C4541] dark:text-[#FCF0DA] mb-2">
+          {t.features.f1_title}
+        </h3>
+        <p class="text-sm text-[#4C4541]/75 dark:text-[#FCF0DA]/70 leading-relaxed">
+          {t.features.f1_desc}
+        </p>
+      </div>
+
+      <!-- Feature 2: Hardware-Accelerated Speed -->
+      <div class="relative group p-6 rounded-3xl border border-[#4C4541]/15 dark:border-[#FCF0DA]/15 bg-[#f8ebd5]/60 dark:bg-[#2c2624] hover:bg-[#FCF0DA] dark:hover:bg-[#342e2b] hover:shadow-xl hover:shadow-[#4C4541]/5 hover:border-[#F2C46A] transition duration-300">
+        <div class="w-12 h-12 rounded-2xl bg-[#F2C46A]/25 text-[#4C4541] dark:text-[#F2C46A] flex items-center justify-center mb-5">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-[#4C4541] dark:text-[#FCF0DA] mb-2">
+          {t.features.f2_title}
+        </h3>
+        <p class="text-sm text-[#4C4541]/75 dark:text-[#FCF0DA]/70 leading-relaxed">
+          {t.features.f2_desc}
+        </p>
+      </div>
+
+      <!-- Feature 3: 1-Click Instant ZIP Packaging -->
+      <div class="relative group p-6 rounded-3xl border border-[#4C4541]/15 dark:border-[#FCF0DA]/15 bg-[#f8ebd5]/60 dark:bg-[#2c2624] hover:bg-[#FCF0DA] dark:hover:bg-[#342e2b] hover:shadow-xl hover:shadow-[#4C4541]/5 hover:border-[#AEAC78] transition duration-300">
+        <div class="w-12 h-12 rounded-2xl bg-[#AEAC78]/25 text-[#4C4541] dark:text-[#AEAC78] flex items-center justify-center mb-5">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-[#4C4541] dark:text-[#FCF0DA] mb-2">
+          {t.features.f3_title}
+        </h3>
+        <p class="text-sm text-[#4C4541]/75 dark:text-[#FCF0DA]/70 leading-relaxed">
+          {t.features.f3_desc}
+        </p>
+      </div>
+
+      <!-- Feature 4: Smart Format Conversion -->
+      <div class="relative group p-6 rounded-3xl border border-[#4C4541]/15 dark:border-[#FCF0DA]/15 bg-[#f8ebd5]/60 dark:bg-[#2c2624] hover:bg-[#FCF0DA] dark:hover:bg-[#342e2b] hover:shadow-xl hover:shadow-[#4C4541]/5 hover:border-[#F2C46A] transition duration-300">
+        <div class="w-12 h-12 rounded-2xl bg-[#F2C46A]/25 text-[#4C4541] dark:text-[#F2C46A] flex items-center justify-center mb-5">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-[#4C4541] dark:text-[#FCF0DA] mb-2">
+          {t.features.f4_title}
+        </h3>
+        <p class="text-sm text-[#4C4541]/75 dark:text-[#FCF0DA]/70 leading-relaxed">
+          {t.features.f4_desc}
+        </p>
+      </div>
+
+      <!-- Feature 5: Zero Limits -->
+      <div class="relative group p-6 rounded-3xl border border-[#4C4541]/15 dark:border-[#FCF0DA]/15 bg-[#f8ebd5]/60 dark:bg-[#2c2624] hover:bg-[#FCF0DA] dark:hover:bg-[#342e2b] hover:shadow-xl hover:shadow-[#4C4541]/5 hover:border-[#AEAC78] transition duration-300">
+        <div class="w-12 h-12 rounded-2xl bg-[#AEAC78]/25 text-[#4C4541] dark:text-[#AEAC78] flex items-center justify-center mb-5">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-[#4C4541] dark:text-[#FCF0DA] mb-2">
+          {t.features.f5_title}
+        </h3>
+        <p class="text-sm text-[#4C4541]/75 dark:text-[#FCF0DA]/70 leading-relaxed">
+          {t.features.f5_desc}
+        </p>
+      </div>
+
+      <!-- Feature 6: Works Offline -->
+      <div class="relative group p-6 rounded-3xl border border-[#4C4541]/15 dark:border-[#FCF0DA]/15 bg-[#f8ebd5]/60 dark:bg-[#2c2624] hover:bg-[#FCF0DA] dark:hover:bg-[#342e2b] hover:shadow-xl hover:shadow-[#4C4541]/5 hover:border-[#F2C46A] transition duration-300">
+        <div class="w-12 h-12 rounded-2xl bg-[#F2C46A]/25 text-[#4C4541] dark:text-[#F2C46A] flex items-center justify-center mb-5">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-[#4C4541] dark:text-[#FCF0DA] mb-2">
+          {t.features.f6_title}
+        </h3>
+        <p class="text-sm text-[#4C4541]/75 dark:text-[#FCF0DA]/70 leading-relaxed">
+          {t.features.f6_desc}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

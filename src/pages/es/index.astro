@@ -1,0 +1,20 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import BulkResizer from '../../components/BulkResizer';
+import FeaturesSection from '../../components/FeaturesSection.astro';
+import HowItWorks from '../../components/HowItWorks.astro';
+import PresetsCheatSheet from '../../components/PresetsCheatSheet.astro';
+import FaqSection from '../../components/FaqSection.astro';
+
+const locale = 'es';
+---
+
+<Layout locale={locale}>
+  <Hero locale={locale} />
+  <BulkResizer client:load locale={locale} />
+  <FeaturesSection locale={locale} />
+  <HowItWorks locale={locale} />
+  <PresetsCheatSheet locale={locale} />
+  <FaqSection locale={locale} />
+</Layout>
