@@ -1,0 +1,764 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BulkResizer from '../components/BulkResizer';
+
+const locale = 'en';
+const siteUrl = 'https://bulkresize.github.io';
+const canonicalUrl = `${siteUrl}/how-to-bulk-resize-compress-images-free/`;
+const pageTitle = 'How to Bulk Resize & Compress Images Free: Step-by-Step Guide | BulkResize';
+const pageDescription = 'Learn how to bulk resize, compress, and convert images online for free without uploading files. An in-depth educational guide on client-side optimization and WebP.';
+const pageKeywords = 'how to bulk resize images, bulk compress images free, batch resize photos online, client side image resizer, convert images to webp bulk, zero upload photo compressor, image compression guide, image optimization for web';
+
+// Schema.org Structured Data (@graph)
+const guideSchemaGraph = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    // 1. Organization
+    {
+      '@type': 'Organization',
+      '@id': `${siteUrl}/#organization`,
+      'name': 'BulkResize',
+      'url': siteUrl,
+      'logo': {
+        '@type': 'ImageObject',
+        '@id': `${siteUrl}/#logo`,
+        'url': `${siteUrl}/favicon.svg`,
+        'caption': 'BulkResize Logo'
+      },
+      'sameAs': [
+        'https://github.com/bulkresize/bulkresize.github.io',
+        'https://buymeacoffee.com/kisharadilz'
+      ]
+    },
+    // 2. WebSite
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}/#website`,
+      'url': siteUrl,
+      'name': 'BulkResize',
+      'inLanguage': 'en'
+    },
+    // 3. BreadcrumbList
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${canonicalUrl}#breadcrumb`,
+      'itemListElement': [
+        {
+          '@type': 'ListItem',
+          'position': 1,
+          'name': 'Home',
+          'item': `${siteUrl}/`
+        },
+        {
+          '@type': 'ListItem',
+          'position': 2,
+          'name': 'Educational Guides',
+          'item': canonicalUrl
+        },
+        {
+          '@type': 'ListItem',
+          'position': 3,
+          'name': 'How to Bulk Resize & Compress Images Free',
+          'item': canonicalUrl
+        }
+      ]
+    },
+    // 4. TechArticle Schema
+    {
+      '@type': 'TechArticle',
+      '@id': `${canonicalUrl}#article`,
+      'isPartOf': {
+        '@id': `${siteUrl}/#website`
+      },
+      'headline': 'How to Bulk Resize & Compress Images Free: The Complete Educational Guide',
+      'description': pageDescription,
+      'url': canonicalUrl,
+      'inLanguage': 'en',
+      'mainEntityOfPage': canonicalUrl,
+      'datePublished': '2024-02-15T00:00:00+00:00',
+      'dateModified': '2026-10-02T13:35:00+00:00',
+      'proficiencyLevel': 'Beginner to Intermediate',
+      'articleSection': 'Web Performance & Image Optimization',
+      'author': {
+        '@type': 'Person',
+        'name': 'Kishara Dilshan',
+        'url': 'https://buymeacoffee.com/kisharadilz'
+      },
+      'publisher': {
+        '@id': `${siteUrl}/#organization`
+      },
+      'image': `${siteUrl}/og-image.png`
+    },
+    // 5. HowTo Schema
+    {
+      '@type': 'HowTo',
+      '@id': `${canonicalUrl}#howto`,
+      'name': 'How to Bulk Resize and Compress Images Online for Free',
+      'description': 'A step-by-step practical guide to batch resizing, compressing, and converting dozens or hundreds of photos directly in your web browser with zero file uploads.',
+      'totalTime': 'PT2M',
+      'estimatedCost': {
+        '@type': 'MonetaryAmount',
+        'currency': 'USD',
+        'value': '0'
+      },
+      'tool': [
+        {
+          '@type': 'HowToTool',
+          'name': 'BulkResize Web Application'
+        },
+        {
+          '@type': 'HowToTool',
+          'name': 'Modern Web Browser (Chrome, Safari, Firefox, or Edge)'
+        }
+      ],
+      'step': [
+        {
+          '@type': 'HowToStep',
+          'position': 1,
+          'name': 'Upload or Drag & Drop Multiple Images',
+          'text': 'Drag and drop your batch of JPEG, PNG, or WebP images into the client-side resizer dropzone.',
+          'url': `${canonicalUrl}#step-1`
+        },
+        {
+          '@type': 'HowToStep',
+          'position': 2,
+          'name': 'Select Scaling Strategy and Aspect Ratio Lock',
+          'text': 'Choose Percentage scaling (e.g. 50%), Exact Width/Height with aspect ratio lock, or select a pre-configured social media preset.',
+          'url': `${canonicalUrl}#step-2`
+        },
+        {
+          '@type': 'HowToStep',
+          'position': 3,
+          'name': 'Choose Output Format and Compression Quality',
+          'text': 'Select modern WebP, JPEG, or PNG format and adjust the compression slider to 80-85% for optimal byte reduction with no visible quality loss.',
+          'url': `${canonicalUrl}#step-3`
+        },
+        {
+          '@type': 'HowToStep',
+          'position': 4,
+          'name': 'Batch Process and Instant ZIP Download',
+          'text': 'Click Process All Images. Multi-threaded Web Workers scale all files in parallel memory, and JSZip packages them into an instant ZIP download.',
+          'url': `${canonicalUrl}#step-4`
+        }
+      ]
+    },
+    // 6. FAQPage Schema
+    {
+      '@type': 'FAQPage',
+      '@id': `${canonicalUrl}#faq`,
+      'mainEntity': [
+        {
+          '@type': 'Question',
+          'name': 'How do I resize hundreds of images at once without software?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'You can use a client-side batch resizer like BulkResize. Drag and drop your images into the browser, select your desired dimensions or percentage, and the browser uses HTML5 Canvas and Web Workers to process all files locally without uploading them to any cloud server.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'What is the best image format for web speed and SEO?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'WebP is the current gold standard recommended by Google. It produces files that are 25% to 35% smaller than comparable JPEGs and PNGs while supporting both 24-bit RGB color and alpha transparency.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'Does compressing images reduce image quality?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'With lossy compression, setting the quality slider between 80% and 85% removes redundant high-frequency color variations that the human eye cannot perceive. This cuts file size by up to 75% to 85% with virtually zero perceptible loss in visual clarity.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'Are my confidential photos safe when resizing online?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'With 100% client-side tools like BulkResize, your images never leave your local device. All image scaling occurs directly in your computer or phone memory using the HTML5 Canvas API, guaranteeing complete data privacy.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'What is the difference between image resizing and image compression?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Resizing changes the physical pixel dimensions of an image (e.g. from 4000x3000px down to 1200x900px). Compression reduces the digital file size (bytes) by optimizing color data and discarding imperceptible visual information without altering pixel resolution.'
+          }
+        }
+      ]
+    }
+  ]
+};
+---
+
+<Layout
+  locale={locale}
+  title={pageTitle}
+  description={pageDescription}
+  keywords={pageKeywords}
+  canonicalUrl={canonicalUrl}
+  ogType="article"
+  schemaGraph={guideSchemaGraph}
+>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+    <!-- Breadcrumb Navigation -->
+    <nav aria-label="Breadcrumb" class="mb-6 inline-flex items-center text-xs font-semibold text-[#4C4541]/75 dark:text-[#FCF0DA]/75">
+      <ol class="flex items-center space-x-1.5 sm:space-x-2" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="flex items-center">
+          <a href="/" itemprop="item" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition flex items-center gap-1.5 p-1 rounded-md">
+            <svg class="w-3.5 h-3.5 text-[#AEAC78]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            <span itemprop="name">Home</span>
+          </a>
+          <meta itemprop="position" content="1" />
+          <span class="mx-1 text-[#4C4541]/40 dark:text-[#FCF0DA]/40 select-none" aria-hidden="true">/</span>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="flex items-center">
+          <span itemprop="name" class="text-[#4C4541]/80 dark:text-[#FCF0DA]/80">Guides</span>
+          <meta itemprop="position" content="2" />
+          <span class="mx-1 text-[#4C4541]/40 dark:text-[#FCF0DA]/40 select-none" aria-hidden="true">/</span>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="flex items-center" aria-current="page">
+          <span itemprop="name" class="font-bold text-[#4C4541] dark:text-[#FCF0DA] bg-[#AEAC78]/15 px-2 py-0.5 rounded-md">
+            How to Bulk Resize & Compress Images Free
+          </span>
+          <link itemprop="item" href={canonicalUrl} />
+          <meta itemprop="position" content="3" />
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="mb-10 text-center sm:text-left">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#AEAC78]/20 dark:bg-[#AEAC78]/25 text-[#4C4541] dark:text-[#FCF0DA] border border-[#AEAC78]/40 text-xs font-bold uppercase tracking-wider mb-4">
+        <span>📚 Comprehensive Educational Guide</span>
+        <span class="text-[#c68a25] dark:text-[#F2C46A]">•</span>
+        <span>100% Free & Client-Side</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#4C4541] dark:text-[#FCF0DA] tracking-tight leading-tight mb-4">
+        How to Bulk Resize & Compress Images Free
+      </h1>
+
+      <p class="text-lg sm:text-xl text-[#4C4541]/85 dark:text-[#FCF0DA]/85 leading-relaxed max-w-3xl mb-6">
+        A complete technical and practical walkthrough on batch resizing, compressing, and converting images directly in your browser with zero data uploads, maximum privacy, and zero cost.
+      </p>
+
+      <!-- Editorial Byline & Metadata -->
+      <div class="flex flex-wrap items-center gap-4 text-xs font-semibold text-[#4C4541]/70 dark:text-[#FCF0DA]/70 border-y border-[#4C4541]/10 dark:border-[#FCF0DA]/10 py-3">
+        <div class="flex items-center gap-2">
+          <div class="w-6 h-6 rounded-full bg-[#AEAC78] text-[#FCF0DA] flex items-center justify-center font-bold text-[10px]">
+            BR
+          </div>
+          <span>BulkResize Engineering Team</span>
+        </div>
+        <span>•</span>
+        <div class="flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-[#AEAC78]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12 6 12 12 16 14" />
+          </svg>
+          <span>8 min read</span>
+        </div>
+        <span>•</span>
+        <div class="flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-[#c68a25] dark:text-[#F2C46A]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          </svg>
+          <span>100% Private (Zero Cloud Uploads)</span>
+        </div>
+        <span>•</span>
+        <span>Updated: October 2026</span>
+      </div>
+    </header>
+
+    <!-- Quick Navigation / Table of Contents -->
+    <nav aria-label="Table of Contents" class="mb-10 p-5 rounded-2xl bg-[#f5e5c9] dark:bg-[#2b2523] border border-[#4C4541]/10 dark:border-[#FCF0DA]/10">
+      <h2 class="text-sm font-bold uppercase tracking-wider text-[#4C4541] dark:text-[#FCF0DA] mb-3 flex items-center gap-2">
+        <svg class="w-4 h-4 text-[#c68a25] dark:text-[#F2C46A]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="8" y1="6" x2="21" y2="6"></line>
+          <line x1="8" y1="12" x2="21" y2="12"></line>
+          <line x1="8" y1="18" x2="21" y2="18"></line>
+          <line x1="3" y1="6" x2="3.01" y2="6"></line>
+          <line x1="3" y1="12" x2="3.01" y2="12"></line>
+          <line x1="3" y1="18" x2="3.01" y2="18"></line>
+        </svg>
+        <span>Table of Contents</span>
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-[#4C4541]/85 dark:text-[#FCF0DA]/85 font-medium">
+        <a href="#quick-answer" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition flex items-center gap-2">
+          <span class="text-[#AEAC78] font-mono text-xs">01.</span> Quick Answer (Featured Summary)
+        </a>
+        <a href="#why-resize-in-bulk" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition flex items-center gap-2">
+          <span class="text-[#AEAC78] font-mono text-xs">02.</span> Why Batch Image Resizing Matters
+        </a>
+        <a href="#step-by-step-guide" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition flex items-center gap-2">
+          <span class="text-[#AEAC78] font-mono text-xs">03.</span> Step-by-Step Batch Tutorial
+        </a>
+        <a href="#interactive-resizer" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition flex items-center gap-2">
+          <span class="text-[#AEAC78] font-mono text-xs">04.</span> Live Practice Resizer Tool
+        </a>
+        <a href="#lossy-vs-lossless" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition flex items-center gap-2">
+          <span class="text-[#AEAC78] font-mono text-xs">05.</span> Lossy vs. Lossless Compression Science
+        </a>
+        <a href="#format-comparison" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition flex items-center gap-2">
+          <span class="text-[#AEAC78] font-mono text-xs">06.</span> WebP vs. JPEG vs. PNG Matrix
+        </a>
+        <a href="#client-vs-cloud" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition flex items-center gap-2">
+          <span class="text-[#AEAC78] font-mono text-xs">07.</span> Client-Side vs. Cloud Upload Privacy
+        </a>
+        <a href="#faq" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition flex items-center gap-2">
+          <span class="text-[#AEAC78] font-mono text-xs">08.</span> Educational FAQ
+        </a>
+      </div>
+    </nav>
+
+    <!-- Quick Answer Box (Google Position 0 / Featured Snippet Target) -->
+    <section id="quick-answer" aria-labelledby="quick-answer-heading" class="mb-12 p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#f8ebd5] to-[#f3dfbf] dark:from-[#2e2724] dark:to-[#38302c] border-2 border-[#F2C46A] shadow-md">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="p-2 rounded-xl bg-[#F2C46A] text-[#4C4541] font-bold">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </span>
+        <h2 id="quick-answer-heading" class="text-xl sm:text-2xl font-extrabold text-[#4C4541] dark:text-[#FCF0DA]">
+          Quick Answer: How to Bulk Resize Images Free in 4 Steps
+        </h2>
+      </div>
+      <p class="text-sm sm:text-base text-[#4C4541]/90 dark:text-[#FCF0DA]/90 mb-4 leading-relaxed font-medium">
+        To resize and compress dozens or hundreds of images simultaneously without installing software or uploading files:
+      </p>
+      <ol class="space-y-3 text-sm sm:text-base text-[#4C4541]/90 dark:text-[#FCF0DA]/90">
+        <li class="flex items-start gap-3">
+          <span class="w-6 h-6 rounded-full bg-[#4C4541] dark:bg-[#F2C46A] text-[#FCF0DA] dark:text-[#4C4541] font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+          <span><strong>Upload assets:</strong> Drag and drop your image collection (JPG, PNG, WebP) directly into the <a href="#interactive-resizer" class="text-[#c68a25] dark:text-[#F2C46A] underline font-bold">BulkResize Workspace</a>.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="w-6 h-6 rounded-full bg-[#4C4541] dark:bg-[#F2C46A] text-[#FCF0DA] dark:text-[#4C4541] font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+          <span><strong>Configure scaling:</strong> Choose percentage scaling (e.g. 50%), exact width/height with aspect ratio locked, or a social media preset (Instagram, YouTube, Shopify).</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="w-6 h-6 rounded-full bg-[#4C4541] dark:bg-[#F2C46A] text-[#FCF0DA] dark:text-[#4C4541] font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+          <span><strong>Select format & quality:</strong> Set the export format to modern <strong>WebP</strong> and set the quality slider to <strong>80%–85%</strong> for maximum file reduction with zero visible quality loss.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="w-6 h-6 rounded-full bg-[#4C4541] dark:bg-[#F2C46A] text-[#FCF0DA] dark:text-[#4C4541] font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">4</span>
+          <span><strong>Instant export:</strong> Click <em>Process All</em> and download individual files or a single bundled <strong>ZIP archive</strong> packaged directly in your browser.</span>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Section 1: Why Batch Resizing Matters -->
+    <section id="why-resize-in-bulk" aria-labelledby="why-heading" class="mb-14">
+      <h2 id="why-heading" class="text-2xl sm:text-3xl font-extrabold text-[#4C4541] dark:text-[#FCF0DA] mb-4">
+        1. Why Batch Image Resizing Matters (Bandwidth, PageSpeed & SEO)
+      </h2>
+      <p class="text-base text-[#4C4541]/85 dark:text-[#FCF0DA]/85 leading-relaxed mb-6">
+        Modern smartphones and digital cameras capture photographs at resolutions between 12 and 100 megapixels (often 4000×3000 pixels or larger), generating file sizes between 5 MB and 25 MB per image. While exceptional for large billboard prints, these massive uncompressed images are catastrophic for web performance, digital storage, and user experience.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+        <div class="p-5 rounded-2xl bg-[#FCF0DA] dark:bg-[#282220] border border-[#4C4541]/10 dark:border-[#FCF0DA]/10 shadow-sm">
+          <div class="w-10 h-10 rounded-xl bg-[#c68a25]/15 dark:bg-[#F2C46A]/20 text-[#c68a25] dark:text-[#F2C46A] flex items-center justify-center mb-3">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
+          <h3 class="font-bold text-base text-[#4C4541] dark:text-[#FCF0DA] mb-1.5">Google Core Web Vitals</h3>
+          <p class="text-xs text-[#4C4541]/75 dark:text-[#FCF0DA]/75 leading-relaxed">
+            Images account for over 60% of average webpage payload. Unoptimized images trigger poor <strong>Largest Contentful Paint (LCP)</strong> scores, directly hurting Google search rankings.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-[#FCF0DA] dark:bg-[#282220] border border-[#4C4541]/10 dark:border-[#FCF0DA]/10 shadow-sm">
+          <div class="w-10 h-10 rounded-xl bg-[#AEAC78]/25 text-[#AEAC78] flex items-center justify-center mb-3">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+          </div>
+          <h3 class="font-bold text-base text-[#4C4541] dark:text-[#FCF0DA] mb-1.5">Hosting & CDN Bandwidth</h3>
+          <p class="text-xs text-[#4C4541]/75 dark:text-[#FCF0DA]/75 leading-relaxed">
+            Batch-converting a 500-image catalog from 4 MB JPEGs to 180 KB WebPs saves over 1.9 Gigabytes of transfer data per visitor, slashing cloud hosting egress costs.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-[#FCF0DA] dark:bg-[#282220] border border-[#4C4541]/10 dark:border-[#FCF0DA]/10 shadow-sm">
+          <div class="w-10 h-10 rounded-xl bg-[#4C4541]/15 dark:bg-[#FCF0DA]/20 text-[#4C4541] dark:text-[#FCF0DA] flex items-center justify-center mb-3">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+              <line x1="12" y1="18" x2="12.01" y2="18"></line>
+            </svg>
+          </div>
+          <h3 class="font-bold text-base text-[#4C4541] dark:text-[#FCF0DA] mb-1.5">Mobile Bounce Rates</h3>
+          <p class="text-xs text-[#4C4541]/75 dark:text-[#FCF0DA]/75 leading-relaxed">
+            Over 58% of global web traffic originates on mobile devices. Heavy images consume cellular data plans and lead to immediate bounce rates if load times exceed 2.5 seconds.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Step-by-Step Practical Tutorial -->
+    <section id="step-by-step-guide" aria-labelledby="steps-heading" class="mb-14">
+      <h2 id="steps-heading" class="text-2xl sm:text-3xl font-extrabold text-[#4C4541] dark:text-[#FCF0DA] mb-6">
+        2. Step-by-Step Tutorial: How to Bulk Resize Images Online
+      </h2>
+
+      <div class="space-y-6">
+        <!-- Step 1 -->
+        <div id="step-1" class="p-6 rounded-2xl bg-[#fbf5e8] dark:bg-[#282321] border border-[#4C4541]/15 dark:border-[#FCF0DA]/15">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-8 h-8 rounded-xl bg-[#4C4541] dark:bg-[#F2C46A] text-[#FCF0DA] dark:text-[#4C4541] font-bold text-sm flex items-center justify-center">
+              1
+            </span>
+            <h3 class="text-lg font-bold text-[#4C4541] dark:text-[#FCF0DA]">
+              Upload or Drag & Drop Multiple Images
+            </h3>
+          </div>
+          <p class="text-sm text-[#4C4541]/80 dark:text-[#FCF0DA]/80 leading-relaxed pl-11">
+            Open the <a href="#interactive-resizer" class="text-[#c68a25] dark:text-[#F2C46A] font-bold underline">Bulk Resizer Tool</a>. Drag your entire folder or multi-select dozens of images using <kbd class="px-1.5 py-0.5 rounded bg-[#4C4541]/10 dark:bg-[#FCF0DA]/10 font-mono text-xs">Ctrl + A</kbd> (Windows) or <kbd class="px-1.5 py-0.5 rounded bg-[#4C4541]/10 dark:bg-[#FCF0DA]/10 font-mono text-xs">Cmd + A</kbd> (Mac). BulkResize instantly analyzes dimensions, file extensions, and file sizes locally in memory without transmitting any data over the internet.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div id="step-2" class="p-6 rounded-2xl bg-[#fbf5e8] dark:bg-[#282321] border border-[#4C4541]/15 dark:border-[#FCF0DA]/15">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-8 h-8 rounded-xl bg-[#AEAC78] text-[#FCF0DA] font-bold text-sm flex items-center justify-center">
+              2
+            </span>
+            <h3 class="text-lg font-bold text-[#4C4541] dark:text-[#FCF0DA]">
+              Choose Your Scaling Strategy (Percentage, Pixels, or Presets)
+            </h3>
+          </div>
+          <p class="text-sm text-[#4C4541]/80 dark:text-[#FCF0DA]/80 leading-relaxed pl-11 mb-3">
+            Select one of three professional resizing modes based on your end destination:
+          </p>
+          <ul class="pl-11 space-y-2 text-xs sm:text-sm text-[#4C4541]/80 dark:text-[#FCF0DA]/80 list-disc list-inside">
+            <li><strong>Percentage Scaling (e.g. 50%):</strong> Reduces physical dimensions uniformly while preserving original proportions for every mixed-orientation photo.</li>
+            <li><strong>Exact Width & Height (Aspect Ratio Lock):</strong> Enter specific constraints (e.g. 1200px width). Keeping the aspect ratio lock enabled prevents image stretching.</li>
+            <li><strong>Social Media & Web Presets:</strong> Instant pre-sets for Instagram Post (1080×1080), YouTube Thumbnail (1280×720), Shopify Product (2048×2048), and more.</li>
+          </ul>
+        </div>
+
+        <!-- Step 3 -->
+        <div id="step-3" class="p-6 rounded-2xl bg-[#fbf5e8] dark:bg-[#282321] border border-[#4C4541]/15 dark:border-[#FCF0DA]/15">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-8 h-8 rounded-xl bg-[#F2C46A] text-[#4C4541] font-bold text-sm flex items-center justify-center">
+              3
+            </span>
+            <h3 class="text-lg font-bold text-[#4C4541] dark:text-[#FCF0DA]">
+              Calibrate Format Conversion & Quality Compression Sliders
+            </h3>
+          </div>
+          <p class="text-sm text-[#4C4541]/80 dark:text-[#FCF0DA]/80 leading-relaxed pl-11 mb-2">
+            Convert outdated uncompressed formats to modern web formats:
+          </p>
+          <div class="pl-11 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+            <div class="p-3 rounded-xl bg-[#FCF0DA] dark:bg-[#342e2b] border border-[#AEAC78]/30">
+              <strong class="text-[#c68a25] dark:text-[#F2C46A] block mb-1">WebP (Recommended)</strong>
+              Maximum compression efficiency, supports transparency, supported by 97%+ of all browsers worldwide.
+            </div>
+            <div class="p-3 rounded-xl bg-[#FCF0DA] dark:bg-[#342e2b] border border-[#AEAC78]/30">
+              <strong class="text-[#4C4541] dark:text-[#FCF0DA] block mb-1">JPEG</strong>
+              Universal legacy compatibility for traditional print or legacy photography viewing tools.
+            </div>
+            <div class="p-3 rounded-xl bg-[#FCF0DA] dark:bg-[#342e2b] border border-[#AEAC78]/30">
+              <strong class="text-[#AEAC78] block mb-1">PNG</strong>
+              Lossless clarity for graphic diagrams, vector icons, and transparent transparent backgrounds.
+            </div>
+          </div>
+          <p class="text-xs text-[#4C4541]/75 dark:text-[#FCF0DA]/75 pl-11 mt-3">
+            💡 <strong>Pro Tip:</strong> For WebP and JPEG, set the quality slider to <strong>80%–85%</strong>. This cuts 75%+ of the file weight without visible degradation.
+          </p>
+        </div>
+
+        <!-- Step 4 -->
+        <div id="step-4" class="p-6 rounded-2xl bg-[#fbf5e8] dark:bg-[#282321] border border-[#4C4541]/15 dark:border-[#FCF0DA]/15">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-8 h-8 rounded-xl bg-[#4C4541] dark:bg-[#AEAC78] text-[#FCF0DA] font-bold text-sm flex items-center justify-center">
+              4
+            </span>
+            <h3 class="text-lg font-bold text-[#4C4541] dark:text-[#FCF0DA]">
+              Batch Process and Download Instant ZIP Package
+            </h3>
+          </div>
+          <p class="text-sm text-[#4C4541]/80 dark:text-[#FCF0DA]/80 leading-relaxed pl-11">
+            Click <strong>Process All Images</strong>. BulkResize utilizes browser Web Workers to render canvas transformations multi-threaded across your device CPU cores. Once completed, download individual photos or click <strong>Download All (ZIP)</strong> to immediately save an organized ZIP package with custom filenames.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Practice Sandbox Section -->
+    <section id="interactive-resizer" aria-labelledby="sandbox-heading" class="mb-14 scroll-mt-20">
+      <div class="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#AEAC78]">Interactive Learning Sandbox</span>
+          <h2 id="sandbox-heading" class="text-2xl sm:text-3xl font-extrabold text-[#4C4541] dark:text-[#FCF0DA]">
+            Try It Now: Live Bulk Resizer Engine
+          </h2>
+          <p class="text-sm text-[#4C4541]/75 dark:text-[#FCF0DA]/75 mt-1">
+            Put the educational concepts into action immediately. No sign-up, 100% free, runs in your browser.
+          </p>
+        </div>
+      </div>
+
+      <!-- Resizer React Island mounted directly -->
+      <div class="p-4 sm:p-6 rounded-3xl bg-[#f8ebd5] dark:bg-[#1e1a19] border-2 border-[#AEAC78]/40 shadow-xl">
+        <BulkResizer client:load locale={locale} />
+      </div>
+    </section>
+
+    <!-- Section 3: The Science of Lossy vs. Lossless Compression -->
+    <section id="lossy-vs-lossless" aria-labelledby="science-heading" class="mb-14">
+      <h2 id="science-heading" class="text-2xl sm:text-3xl font-extrabold text-[#4C4541] dark:text-[#FCF0DA] mb-4">
+        3. The Science of Lossy vs. Lossless Compression
+      </h2>
+      <p class="text-base text-[#4C4541]/85 dark:text-[#FCF0DA]/85 leading-relaxed mb-6">
+        Understanding the mathematical mechanisms behind image compression allows web developers and designers to achieve maximum page speed without sacrificing graphic aesthetic quality.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <!-- Lossless Card -->
+        <div class="p-6 rounded-2xl bg-[#FCF0DA] dark:bg-[#282220] border border-[#4C4541]/15 dark:border-[#FCF0DA]/15">
+          <div class="inline-block px-3 py-1 rounded-lg bg-[#AEAC78]/25 text-[#4C4541] dark:text-[#AEAC78] font-bold text-xs uppercase mb-3">
+            Lossless Compression
+          </div>
+          <h3 class="text-lg font-bold text-[#4C4541] dark:text-[#FCF0DA] mb-2">Exact Pixel Preservation</h3>
+          <p class="text-sm text-[#4C4541]/80 dark:text-[#FCF0DA]/80 leading-relaxed mb-4">
+            Lossless algorithms (used in PNG and Lossless WebP) work identically to ZIP file compression. They identify repetitive pixel sequences, strip non-essential metadata (camera EXIF, GPS coordinates, date stamps), and encode color tables using Huffman and DEFLATE encoding.
+          </p>
+          <div class="text-xs text-[#4C4541]/75 dark:text-[#FCF0DA]/75 space-y-1.5 border-t border-[#4C4541]/10 dark:border-[#FCF0DA]/10 pt-3">
+            <p><strong>Artifacts:</strong> Zero loss of data. Every pixel is bit-for-bit identical.</p>
+            <p><strong>Compression Ratio:</strong> 10% to 30% reduction.</p>
+            <p><strong>Best For:</strong> Logos, icons, UI wireframes, line drawings, and screenshots with crisp text.</p>
+          </div>
+        </div>
+
+        <!-- Lossy Card -->
+        <div class="p-6 rounded-2xl bg-[#FCF0DA] dark:bg-[#282220] border border-[#4C4541]/15 dark:border-[#FCF0DA]/15">
+          <div class="inline-block px-3 py-1 rounded-lg bg-[#F2C46A]/30 text-[#4C4541] dark:text-[#F2C46A] font-bold text-xs uppercase mb-3">
+            Lossy Compression
+          </div>
+          <h3 class="text-lg font-bold text-[#4C4541] dark:text-[#FCF0DA] mb-2">Perceptual Optimization</h3>
+          <p class="text-sm text-[#4C4541]/80 dark:text-[#FCF0DA]/80 leading-relaxed mb-4">
+            Lossy algorithms (used in JPEG and WebP) exploit the biological limits of the human eye. The eye is far more sensitive to luminance (brightness) than chrominance (color variations). By discarding high-frequency color harmonics that humans cannot distinguish, massive file size savings are unlocked.
+          </p>
+          <div class="text-xs text-[#4C4541]/75 dark:text-[#FCF0DA]/75 space-y-1.5 border-t border-[#4C4541]/10 dark:border-[#FCF0DA]/10 pt-3">
+            <p><strong>Artifacts:</strong> Minor mathematical variance; completely imperceptible at 80%+ quality.</p>
+            <p><strong>Compression Ratio:</strong> 70% to 90% reduction.</p>
+            <p><strong>Best For:</strong> Complex photographs, ecommerce product galleries, hero banners, and portfolio shoots.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Format Comparison Matrix -->
+    <section id="format-comparison" aria-labelledby="matrix-heading" class="mb-14">
+      <h2 id="matrix-heading" class="text-2xl sm:text-3xl font-extrabold text-[#4C4541] dark:text-[#FCF0DA] mb-4">
+        4. WebP vs. JPEG vs. PNG Comparison Matrix
+      </h2>
+      <p class="text-base text-[#4C4541]/85 dark:text-[#FCF0DA]/85 leading-relaxed mb-6">
+        Choosing the right image format is critical to passing Google Lighthouse and PageSpeed audits. Here is how modern formats compare side by side:
+      </p>
+
+      <div class="overflow-x-auto rounded-2xl border border-[#4C4541]/15 dark:border-[#FCF0DA]/15 shadow-sm">
+        <table class="w-full text-left text-xs sm:text-sm">
+          <thead class="bg-[#f5e5c9] dark:bg-[#342e2b] text-[#4C4541] dark:text-[#FCF0DA] font-bold border-b border-[#4C4541]/15 dark:border-[#FCF0DA]/15">
+            <tr>
+              <th scope="col" class="py-3.5 px-4">Image Format</th>
+              <th scope="col" class="py-3.5 px-4">Compression Type</th>
+              <th scope="col" class="py-3.5 px-4">Transparency</th>
+              <th scope="col" class="py-3.5 px-4">Typical Size Saving</th>
+              <th scope="col" class="py-3.5 px-4">Global Browser Support</th>
+              <th scope="col" class="py-3.5 px-4">Recommended Usage</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[#4C4541]/10 dark:divide-[#FCF0DA]/10 bg-[#FCF0DA]/50 dark:bg-[#231f1d]">
+            <tr class="hover:bg-[#f8ebd5] dark:hover:bg-[#2e2724] transition">
+              <td class="py-3.5 px-4 font-bold text-[#c68a25] dark:text-[#F2C46A] flex items-center gap-1.5">
+                <span>WebP</span>
+                <span class="px-1.5 py-0.2 rounded text-[10px] bg-[#AEAC78]/30 font-extrabold">Best</span>
+              </td>
+              <td class="py-3.5 px-4">Lossy & Lossless</td>
+              <td class="py-3.5 px-4 text-emerald-600 dark:text-emerald-400 font-bold">✓ Yes (Alpha)</td>
+              <td class="py-3.5 px-4 font-semibold text-emerald-700 dark:text-emerald-300">75% – 90%</td>
+              <td class="py-3.5 px-4">97.4% (All Modern Browsers)</td>
+              <td class="py-3.5 px-4">Default format for all modern websites and blogs</td>
+            </tr>
+            <tr class="hover:bg-[#f8ebd5] dark:hover:bg-[#2e2724] transition">
+              <td class="py-3.5 px-4 font-bold text-[#4C4541] dark:text-[#FCF0DA]">JPEG / JPG</td>
+              <td class="py-3.5 px-4">Lossy</td>
+              <td class="py-3.5 px-4 text-rose-500 font-semibold">✗ No</td>
+              <td class="py-3.5 px-4">50% – 70%</td>
+              <td class="py-3.5 px-4">100% (Universal)</td>
+              <td class="py-3.5 px-4">Legacy email newsletters and older hardware</td>
+            </tr>
+            <tr class="hover:bg-[#f8ebd5] dark:hover:bg-[#2e2724] transition">
+              <td class="py-3.5 px-4 font-bold text-[#4C4541] dark:text-[#FCF0DA]">PNG</td>
+              <td class="py-3.5 px-4">Lossless</td>
+              <td class="py-3.5 px-4 text-emerald-600 dark:text-emerald-400 font-bold">✓ Yes (Full 8-bit)</td>
+              <td class="py-3.5 px-4">10% – 30%</td>
+              <td class="py-3.5 px-4">100% (Universal)</td>
+              <td class="py-3.5 px-4">Transparent logos, icons, diagrams with text</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 5: Client-Side vs Cloud Server Architecture -->
+    <section id="client-vs-cloud" aria-labelledby="privacy-heading" class="mb-14">
+      <h2 id="privacy-heading" class="text-2xl sm:text-3xl font-extrabold text-[#4C4541] dark:text-[#FCF0DA] mb-4">
+        5. Privacy Architecture: Client-Side Engine vs. Cloud Server Uploads
+      </h2>
+      <p class="text-base text-[#4C4541]/85 dark:text-[#FCF0DA]/85 leading-relaxed mb-6">
+        Most free online image converters require uploading your files to remote cloud servers. This exposes corporate assets, private personal photos, and sensitive receipts to data leakage, queue waiting lines, and strict file quotas.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl bg-[#FCF0DA] dark:bg-[#282220] border-2 border-rose-300 dark:border-rose-900/50">
+          <div class="flex items-center gap-2 text-rose-600 dark:text-rose-400 font-bold text-sm mb-3">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="15" y1="9" x2="9" y2="15"></line>
+              <line x1="9" y1="9" x2="15" y2="15"></line>
+            </svg>
+            <span>Traditional Cloud Server Resizers</span>
+          </div>
+          <ul class="space-y-2.5 text-xs sm:text-sm text-[#4C4541]/80 dark:text-[#FCF0DA]/80">
+            <li class="flex items-start gap-2">
+              <span class="text-rose-500 font-bold">✗</span>
+              <span>Images are uploaded over public networks to external servers.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-rose-500 font-bold">✗</span>
+              <span>Server queues slow down batch processing during peak hours.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-rose-500 font-bold">✗</span>
+              <span>Strict file count limits (e.g. max 10 or 20 files per session).</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-rose-500 font-bold">✗</span>
+              <span>Compliance risk under GDPR, CCPA, and enterprise confidentiality rules.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-[#FCF0DA] dark:bg-[#282220] border-2 border-emerald-400 dark:border-emerald-700/60 shadow-sm">
+          <div class="flex items-center gap-2 text-emerald-700 dark:text-emerald-400 font-bold text-sm mb-3">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            <span>BulkResize 100% Client-Side Architecture</span>
+          </div>
+          <ul class="space-y-2.5 text-xs sm:text-sm text-[#4C4541]/80 dark:text-[#FCF0DA]/80">
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 dark:text-emerald-400 font-bold">✓</span>
+              <span><strong>Zero server uploads:</strong> Images never leave your computer or phone.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 dark:text-emerald-400 font-bold">✓</span>
+              <span><strong>Instant hardware scaling:</strong> Powered by your browser's HTML5 Canvas API.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 dark:text-emerald-400 font-bold">✓</span>
+              <span><strong>Unlimited files:</strong> Resize hundreds of photos with zero artificial quotas.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 dark:text-emerald-400 font-bold">✓</span>
+              <span><strong>Local ZIP packaging:</strong> Client-side JSZip bundles archives straight to disk.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Frequently Asked Questions (Educational FAQ) -->
+    <section id="faq" aria-labelledby="faq-heading" class="mb-14">
+      <h2 id="faq-heading" class="text-2xl sm:text-3xl font-extrabold text-[#4C4541] dark:text-[#FCF0DA] mb-6">
+        6. Frequently Asked Questions (FAQ)
+      </h2>
+
+      <div class="space-y-4">
+        <details class="group p-5 rounded-2xl bg-[#FCF0DA] dark:bg-[#282220] border border-[#4C4541]/15 dark:border-[#FCF0DA]/15 transition">
+          <summary class="flex items-center justify-between font-bold text-base text-[#4C4541] dark:text-[#FCF0DA] cursor-pointer list-none">
+            <span>How do I resize hundreds of images at once without software?</span>
+            <span class="text-xs transition-transform group-open:rotate-180 p-1 rounded-md bg-[#AEAC78]/20">▼</span>
+          </summary>
+          <p class="mt-3 text-sm text-[#4C4541]/80 dark:text-[#FCF0DA]/80 leading-relaxed border-t border-[#4C4541]/10 dark:border-[#FCF0DA]/10 pt-3">
+            You can use a client-side batch resizer like BulkResize. Drag and drop your images into the browser, select your desired dimensions or percentage, and the browser uses HTML5 Canvas and Web Workers to process all files locally without uploading them to any cloud server.
+          </p>
+        </details>
+
+        <details class="group p-5 rounded-2xl bg-[#FCF0DA] dark:bg-[#282220] border border-[#4C4541]/15 dark:border-[#FCF0DA]/15 transition">
+          <summary class="flex items-center justify-between font-bold text-base text-[#4C4541] dark:text-[#FCF0DA] cursor-pointer list-none">
+            <span>What is the best image format for web speed and SEO?</span>
+            <span class="text-xs transition-transform group-open:rotate-180 p-1 rounded-md bg-[#AEAC78]/20">▼</span>
+          </summary>
+          <p class="mt-3 text-sm text-[#4C4541]/80 dark:text-[#FCF0DA]/80 leading-relaxed border-t border-[#4C4541]/10 dark:border-[#FCF0DA]/10 pt-3">
+            WebP is the current gold standard recommended by Google. It produces files that are 25% to 35% smaller than comparable JPEGs and PNGs while supporting both 24-bit RGB color and alpha transparency.
+          </p>
+        </details>
+
+        <details class="group p-5 rounded-2xl bg-[#FCF0DA] dark:bg-[#282220] border border-[#4C4541]/15 dark:border-[#FCF0DA]/15 transition">
+          <summary class="flex items-center justify-between font-bold text-base text-[#4C4541] dark:text-[#FCF0DA] cursor-pointer list-none">
+            <span>Does compressing images reduce image quality?</span>
+            <span class="text-xs transition-transform group-open:rotate-180 p-1 rounded-md bg-[#AEAC78]/20">▼</span>
+          </summary>
+          <p class="mt-3 text-sm text-[#4C4541]/80 dark:text-[#FCF0DA]/80 leading-relaxed border-t border-[#4C4541]/10 dark:border-[#FCF0DA]/10 pt-3">
+            With lossy compression, setting the quality slider between 80% and 85% removes redundant high-frequency color variations that the human eye cannot perceive. This cuts file size by up to 75% to 85% with virtually zero perceptible loss in visual clarity.
+          </p>
+        </details>
+
+        <details class="group p-5 rounded-2xl bg-[#FCF0DA] dark:bg-[#282220] border border-[#4C4541]/15 dark:border-[#FCF0DA]/15 transition">
+          <summary class="flex items-center justify-between font-bold text-base text-[#4C4541] dark:text-[#FCF0DA] cursor-pointer list-none">
+            <span>Are my confidential photos safe when resizing online?</span>
+            <span class="text-xs transition-transform group-open:rotate-180 p-1 rounded-md bg-[#AEAC78]/20">▼</span>
+          </summary>
+          <p class="mt-3 text-sm text-[#4C4541]/80 dark:text-[#FCF0DA]/80 leading-relaxed border-t border-[#4C4541]/10 dark:border-[#FCF0DA]/10 pt-3">
+            With 100% client-side tools like BulkResize, your images never leave your local device. All image scaling occurs directly in your computer or phone memory using the HTML5 Canvas API, guaranteeing complete data privacy.
+          </p>
+        </details>
+
+        <details class="group p-5 rounded-2xl bg-[#FCF0DA] dark:bg-[#282220] border border-[#4C4541]/15 dark:border-[#FCF0DA]/15 transition">
+          <summary class="flex items-center justify-between font-bold text-base text-[#4C4541] dark:text-[#FCF0DA] cursor-pointer list-none">
+            <span>What is the difference between image resizing and image compression?</span>
+            <span class="text-xs transition-transform group-open:rotate-180 p-1 rounded-md bg-[#AEAC78]/20">▼</span>
+          </summary>
+          <p class="mt-3 text-sm text-[#4C4541]/80 dark:text-[#FCF0DA]/80 leading-relaxed border-t border-[#4C4541]/10 dark:border-[#FCF0DA]/10 pt-3">
+            Resizing changes the physical pixel dimensions of an image (e.g. from 4000x3000px down to 1200x900px). Compression reduces the digital file size (bytes) by optimizing color data and discarding imperceptible visual information without altering pixel resolution.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <!-- Bottom Action CTA Banner -->
+    <div class="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-[#AEAC78]/20 via-[#F2C46A]/20 to-[#AEAC78]/20 border border-[#AEAC78]/40 text-center">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-[#4C4541] dark:text-[#FCF0DA] mb-3">
+        Ready to Batch Resize Your Images?
+      </h2>
+      <p class="text-sm sm:text-base text-[#4C4541]/80 dark:text-[#FCF0DA]/80 max-w-xl mx-auto mb-6">
+        No accounts, no software installation, zero cloud uploads. Start processing your image library in seconds with 100% browser-based security.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a
+          href="#interactive-resizer"
+          class="px-6 py-3 rounded-xl bg-[#4C4541] dark:bg-[#F2C46A] text-[#FCF0DA] dark:text-[#4C4541] font-bold text-sm shadow-md hover:scale-105 transition"
+        >
+          Launch Free Bulk Resizer →
+        </a>
+        <a
+          href="/"
+          class="px-6 py-3 rounded-xl bg-[#FCF0DA] dark:bg-[#342e2b] text-[#4C4541] dark:text-[#FCF0DA] border border-[#4C4541]/20 dark:border-[#FCF0DA]/20 font-bold text-sm hover:bg-[#f5e5c9] dark:hover:bg-[#443c38] transition"
+        >
+          Back to Homepage
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>

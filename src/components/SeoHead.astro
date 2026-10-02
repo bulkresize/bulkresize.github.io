@@ -5,15 +5,33 @@ import { getLocalizedPath } from '../i18n/utils';
 export interface Props {
   locale: SupportedLocale;
   canonicalUrl?: string;
+  title?: string;
+  description?: string;
+  keywords?: string;
+  ogType?: string;
+  schemaGraph?: any;
 }
 
-const { locale } = Astro.props;
+const {
+  locale,
+  canonicalUrl: propCanonical,
+  title: propTitle,
+  description: propDescription,
+  keywords: propKeywords,
+  ogType = 'website',
+  schemaGraph: propSchemaGraph,
+} = Astro.props;
+
 const siteUrl = 'https://bulkresize.github.io';
 const t = translations[locale] || translations[defaultLocale];
 
 const currentPath = Astro.url.pathname;
-const canonicalHref = `${siteUrl}${currentPath.endsWith('/') ? currentPath : currentPath + '/'}`;
+const canonicalHref = propCanonical || `${siteUrl}${currentPath.endsWith('/') ? currentPath : currentPath + '/'}`;
+const pageTitle = propTitle || t.siteTitle;
+const pageDescription = propDescription || t.siteDescription;
+const pageKeywords = propKeywords || t.siteKeywords;
 const ogImageUrl = `${siteUrl}/og-image.png`;
+const isRootLocalePage = currentPath === '/' || /^\/[a-z]{2}\/?$/.test(currentPath);
 
 // Build FAQ schema questions and answers
 const faqList = [
@@ -38,7 +56,7 @@ const breadcrumbLabels: Record<SupportedLocale, { home: string; current: string 
 const currentBreadcrumb = breadcrumbLabels[locale] || breadcrumbLabels.en;
 
 // Unified Google Recommended @graph Schema
-const schemaGraph = {
+const defaultSchemaGraph = {
   '@context': 'https://schema.org',
   '@graph': [
     // 1. Organization Schema
@@ -162,10 +180,10 @@ const schemaGraph = {
 <!-- Essential Meta Tags -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>{t.siteTitle}</title>
-<meta name="title" content={t.siteTitle} />
-<meta name="description" content={t.siteDescription} />
-<meta name="keywords" content={t.siteKeywords} />
+<title>{pageTitle}</title>
+<meta name="title" content={pageTitle} />
+<meta name="description" content={pageDescription} />
+<meta name="keywords" content={pageKeywords} />
 <meta name="author" content="BulkResize" />
 <meta name="application-name" content="BulkResize" />
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -176,24 +194,28 @@ const schemaGraph = {
 <link rel="canonical" href={canonicalHref} />
 
 <!-- Strict Hreflang Tags -->
-{Object.keys(languages).map((loc) => {
-  const path = getLocalizedPath('/', loc as SupportedLocale);
-  return (
-    <link
-      rel="alternate"
-      hreflang={loc}
-      href={`${siteUrl}${path}`}
-    />
-  );
-})}
-<link rel="alternate" hreflang="x-default" href={`${siteUrl}/`} />
+{isRootLocalePage ? (
+  Object.keys(languages).map((loc) => {
+    const path = getLocalizedPath('/', loc as SupportedLocale);
+    return (
+      <link
+        rel="alternate"
+        hreflang={loc}
+        href={`${siteUrl}${path}`}
+      />
+    );
+  })
+) : (
+  <link rel="alternate" hreflang={locale} href={canonicalHref} />
+)}
+<link rel="alternate" hreflang="x-default" href={isRootLocalePage ? `${siteUrl}/` : canonicalHref} />
 
 <!-- Strict OpenGraph Requirements -->
 <meta property="og:site_name" content="BulkResize" />
-<meta property="og:type" content="website" />
+<meta property="og:type" content={ogType} />
 <meta property="og:url" content={canonicalHref} />
-<meta property="og:title" content={t.siteTitle} />
-<meta property="og:description" content={t.siteDescription} />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={pageDescription} />
 <meta property="og:image" content={ogImageUrl} />
 <meta property="og:image:secure_url" content={ogImageUrl} />
 <meta property="og:image:type" content="image/png" />
@@ -205,8 +227,8 @@ const schemaGraph = {
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:url" content={canonicalHref} />
-<meta name="twitter:title" content={t.siteTitle} />
-<meta name="twitter:description" content={t.siteDescription} />
+<meta name="twitter:title" content={pageTitle} />
+<meta name="twitter:description" content={pageDescription} />
 <meta name="twitter:image" content={ogImageUrl} />
 <meta name="twitter:image:alt" content="BulkResize - Client-Side Bulk Image Resizer & Compressor" />
 
@@ -221,5 +243,5 @@ const schemaGraph = {
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 <meta name="apple-mobile-web-app-title" content="BulkResize" />
 
-<!-- Unified Schema.org @graph (WebApplication, SoftwareApplication, FAQPage, BreadcrumbList, WebSite, Organization) -->
-<script type="application/ld+json" set:html={JSON.stringify(schemaGraph)} />
+<!-- Unified Schema.org @graph -->
+<script type="application/ld+json" set:html={JSON.stringify(propSchemaGraph || defaultSchemaGraph)} />

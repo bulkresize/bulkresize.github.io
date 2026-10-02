@@ -47,11 +47,15 @@ const supportUrl = 'https://buymeacoffee.com/kisharadilz';
 
     <!-- Desktop Navigation Links (Large Screens Only) -->
     <nav class="hidden lg:flex items-center gap-6 text-sm font-semibold text-[#4C4541]/80 dark:text-[#FCF0DA]/80">
-      <a href="#workspace" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition-colors">Resizer</a>
-      <a href="#features" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition-colors">{t.nav.features}</a>
-      <a href="#how-it-works" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition-colors">{t.nav.howItWorks}</a>
-      <a href="#presets" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition-colors">{t.nav.presets}</a>
-      <a href="#faq" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition-colors">{t.nav.faq}</a>
+      <a href={getLocalizedPath('/', locale) + '#workspace'} class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition-colors">Resizer</a>
+      <a href="/how-to-bulk-resize-compress-images-free/" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition-colors flex items-center gap-1.5 font-bold">
+        <span>Guide</span>
+        <span class="px-1.5 py-0.5 text-[9px] uppercase font-extrabold rounded-md bg-[#AEAC78]/25 text-[#4C4541] dark:text-[#AEAC78] border border-[#AEAC78]/40">Free</span>
+      </a>
+      <a href={getLocalizedPath('/', locale) + '#features'} class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition-colors">{t.nav.features}</a>
+      <a href={getLocalizedPath('/', locale) + '#how-it-works'} class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition-colors">{t.nav.howItWorks}</a>
+      <a href={getLocalizedPath('/', locale) + '#presets'} class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition-colors">{t.nav.presets}</a>
+      <a href={getLocalizedPath('/', locale) + '#faq'} class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition-colors">{t.nav.faq}</a>
     </nav>
 
     <!-- Header Actions (Icons-only on mobile & tab view) -->
@@ -177,7 +181,7 @@ const supportUrl = 'https://buymeacoffee.com/kisharadilz';
   >
     <nav class="flex flex-col space-y-1 text-sm font-bold text-[#4C4541] dark:text-[#FCF0DA]">
       <a
-        href="#workspace"
+        href={getLocalizedPath('/', locale) + '#workspace'}
         class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-[#f5e5c9] dark:hover:bg-[#342e2b] transition"
       >
         <span class="p-1.5 rounded-lg bg-[#F2C46A]/25 text-[#4C4541] dark:text-[#F2C46A]">
@@ -186,6 +190,22 @@ const supportUrl = 'https://buymeacoffee.com/kisharadilz';
           </svg>
         </span>
         <span>Resizer Workspace</span>
+      </a>
+
+      <a
+        href="/how-to-bulk-resize-compress-images-free/"
+        class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-[#f5e5c9] dark:hover:bg-[#342e2b] transition"
+      >
+        <span class="p-1.5 rounded-lg bg-[#AEAC78]/25 text-[#4C4541] dark:text-[#AEAC78]">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+          </svg>
+        </span>
+        <div class="flex items-center gap-2">
+          <span>Educational Guide</span>
+          <span class="px-1.5 py-0.5 text-[9px] uppercase font-bold rounded-md bg-[#AEAC78]/25 text-[#4C4541] dark:text-[#AEAC78] border border-[#AEAC78]/40">Free</span>
+        </div>
       </a>
 
       <a

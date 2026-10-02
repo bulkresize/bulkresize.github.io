@@ -8,16 +8,38 @@ import '../styles/global.css';
 
 export interface Props {
   locale: SupportedLocale;
+  title?: string;
+  description?: string;
+  keywords?: string;
+  canonicalUrl?: string;
+  ogType?: string;
+  schemaGraph?: any;
 }
 
-const { locale } = Astro.props;
+const {
+  locale,
+  title,
+  description,
+  keywords,
+  canonicalUrl,
+  ogType,
+  schemaGraph,
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang={locale} class="scroll-smooth">
   <head>
     <ThemeScript />
-    <SeoHead locale={locale} />
+    <SeoHead
+      locale={locale}
+      title={title}
+      description={description}
+      keywords={keywords}
+      canonicalUrl={canonicalUrl}
+      ogType={ogType}
+      schemaGraph={schemaGraph}
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

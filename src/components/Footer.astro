@@ -41,11 +41,12 @@ const currentYear = new Date().getFullYear();
           Navigation
         </h3>
         <ul class="space-y-2 text-sm text-[#4C4541]/75 dark:text-[#FCF0DA]/75">
-          <li><a href="#workspace" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition">Resizer Workspace</a></li>
-          <li><a href="#features" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition">{t.nav.features}</a></li>
-          <li><a href="#how-it-works" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition">{t.nav.howItWorks}</a></li>
-          <li><a href="#presets" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition">{t.nav.presets}</a></li>
-          <li><a href="#faq" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition">{t.nav.faq}</a></li>
+          <li><a href={getLocalizedPath('/', locale) + '#workspace'} class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition">Resizer Workspace</a></li>
+          <li><a href="/how-to-bulk-resize-compress-images-free/" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition font-medium">Educational Guide</a></li>
+          <li><a href={getLocalizedPath('/', locale) + '#features'} class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition">{t.nav.features}</a></li>
+          <li><a href={getLocalizedPath('/', locale) + '#how-it-works'} class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition">{t.nav.howItWorks}</a></li>
+          <li><a href={getLocalizedPath('/', locale) + '#presets'} class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition">{t.nav.presets}</a></li>
+          <li><a href={getLocalizedPath('/', locale) + '#faq'} class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition">{t.nav.faq}</a></li>
         </ul>
       </div>
 
