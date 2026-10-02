@@ -13,7 +13,6 @@ const t = translations[locale] || translations[defaultLocale];
 
 const currentPath = Astro.url.pathname;
 const canonicalHref = `${siteUrl}${currentPath.endsWith('/') ? currentPath : currentPath + '/'}`;
-
 const ogImageUrl = `${siteUrl}/og-image.png`;
 
 // Build FAQ schema questions and answers
@@ -28,70 +27,149 @@ const faqList = [
   { q: t.faq.q8, a: t.faq.a8 },
 ];
 
-const webApplicationSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'WebApplication',
-  '@id': `${siteUrl}/#webapp`,
-  'name': 'BulkResize',
-  'alternateName': ['Bulk Image Resizer', 'Batch Resize Photos Online', 'Private Photo Resizer'],
-  'url': siteUrl,
-  'description': t.siteDescription,
-  'applicationCategory': 'MultimediaApplication',
-  'operatingSystem': 'Any (Web Browser)',
-  'browserRequirements': 'Requires JavaScript. Requires HTML5 Canvas support.',
-  'offers': {
-    '@type': 'Offer',
-    'price': '0',
-    'priceCurrency': 'USD'
-  },
-  'featureList': [
-    '100% Client-Side Processing with Zero Server Uploads',
-    'Multi-threaded Web Worker Batch Resizing',
-    'Percentage and Exact Pixel Scaling Modes',
-    'Pre-configured Social Media & Web Presets',
-    'Instant ZIP Export without Waiting Queues',
-    'WebP, JPEG, and PNG Conversion with Quality Sliders'
-  ],
-  'author': {
-    '@type': 'Person',
-    'name': 'Kishara Dilshan',
-    'url': 'https://buymeacoffee.com/kisharadilz'
-  }
+const breadcrumbLabels: Record<SupportedLocale, { home: string; current: string }> = {
+  en: { home: 'Home', current: 'Bulk Image Resizer' },
+  es: { home: 'Inicio', current: 'Redimensionador de Imágenes' },
+  pt: { home: 'Início', current: 'Redimensionador de Imagens' },
+  de: { home: 'Startseite', current: 'Stapel-Bildverkleinerer' },
+  fr: { home: 'Accueil', current: "Redimensionneur d'Images" },
+  ja: { home: 'ホーム', current: '一括画像リサイズ' },
 };
+const currentBreadcrumb = breadcrumbLabels[locale] || breadcrumbLabels.en;
 
-const softwareApplicationSchema = {
+// Unified Google Recommended @graph Schema
+const schemaGraph = {
   '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  '@id': `${siteUrl}/#software`,
-  'name': 'BulkResize - Free Bulk Image Resizer & Compressor',
-  'applicationCategory': 'MultimediaApplication',
-  'operatingSystem': 'Cross-platform (Browser-based)',
-  'keywords': 'bulk image resizer, batch resize photos online, private photo resizer, image compressor, webp converter',
-  'offers': {
-    '@type': 'Offer',
-    'price': '0',
-    'priceCurrency': 'USD'
-  },
-  'aggregateRating': {
-    '@type': 'AggregateRating',
-    'ratingValue': '4.9',
-    'ratingCount': '1420',
-    'bestRating': '5',
-    'worstRating': '1'
-  }
-};
-
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  'mainEntity': faqList.map(item => ({
-    '@type': 'Question',
-    'name': item.q,
-    'acceptedAnswer': {
-      '@type': 'Answer',
-      'text': item.a
+  '@graph': [
+    // 1. Organization Schema
+    {
+      '@type': 'Organization',
+      '@id': `${siteUrl}/#organization`,
+      'name': 'BulkResize',
+      'url': siteUrl,
+      'logo': {
+        '@type': 'ImageObject',
+        '@id': `${siteUrl}/#logo`,
+        'url': `${siteUrl}/favicon.svg`,
+        'caption': 'BulkResize Logo'
+      },
+      'sameAs': [
+        'https://github.com/bulkresize/bulkresize.github.io',
+        'https://buymeacoffee.com/kisharadilz'
+      ]
+    },
+    // 2. WebSite Schema
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}/#website`,
+      'url': siteUrl,
+      'name': 'BulkResize',
+      'description': t.siteDescription,
+      'inLanguage': locale,
+      'publisher': {
+        '@id': `${siteUrl}/#organization`
+      }
+    },
+    // 3. BreadcrumbList Schema
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${canonicalHref}#breadcrumb`,
+      'itemListElement': [
+        {
+          '@type': 'ListItem',
+          'position': 1,
+          'name': currentBreadcrumb.home,
+          'item': `${siteUrl}/`
+        },
+        {
+          '@type': 'ListItem',
+          'position': 2,
+          'name': currentBreadcrumb.current,
+          'item': canonicalHref
+        }
+      ]
+    },
+    // 4. WebApplication Schema
+    {
+      '@type': 'WebApplication',
+      '@id': `${siteUrl}/#webapp`,
+      'name': 'BulkResize',
+      'alternateName': [
+        'Bulk Image Resizer',
+        'Batch Resize Photos Online',
+        'Private Photo Resizer',
+        'Client-Side Image Compressor'
+      ],
+      'url': canonicalHref,
+      'description': t.siteDescription,
+      'applicationCategory': 'MultimediaApplication',
+      'operatingSystem': 'Any (Web Browser)',
+      'browserRequirements': 'Requires JavaScript. Requires HTML5 Canvas support.',
+      'isAccessibleForFree': true,
+      'inLanguage': locale,
+      'datePublished': '2024-01-01T00:00:00+00:00',
+      'dateModified': '2026-10-02T13:20:00+00:00',
+      'offers': {
+        '@type': 'Offer',
+        'price': '0',
+        'priceCurrency': 'USD'
+      },
+      'featureList': [
+        '100% Client-Side Processing with Zero Server Uploads',
+        'Multi-threaded Web Worker Batch Resizing',
+        'Percentage and Exact Pixel Scaling Modes',
+        'Pre-configured Social Media & Web Presets',
+        'Instant ZIP Export without Waiting Queues',
+        'WebP, JPEG, and PNG Conversion with Quality Sliders'
+      ],
+      'aggregateRating': {
+        '@type': 'AggregateRating',
+        'ratingValue': '4.9',
+        'ratingCount': '1420',
+        'bestRating': '5',
+        'worstRating': '1'
+      },
+      'author': {
+        '@type': 'Person',
+        'name': 'Kishara Dilshan',
+        'url': 'https://buymeacoffee.com/kisharadilz'
+      }
+    },
+    // 5. SoftwareApplication Schema
+    {
+      '@type': 'SoftwareApplication',
+      '@id': `${siteUrl}/#software`,
+      'name': 'BulkResize - Free Bulk Image Resizer & Compressor',
+      'applicationCategory': 'MultimediaApplication',
+      'operatingSystem': 'Cross-platform (Browser-based)',
+      'keywords': 'bulk image resizer, batch resize photos online, private photo resizer, client side image compressor, webp converter',
+      'offers': {
+        '@type': 'Offer',
+        'price': '0',
+        'priceCurrency': 'USD'
+      },
+      'aggregateRating': {
+        '@type': 'AggregateRating',
+        'ratingValue': '4.9',
+        'ratingCount': '1420',
+        'bestRating': '5',
+        'worstRating': '1'
+      }
+    },
+    // 6. FAQPage Schema
+    {
+      '@type': 'FAQPage',
+      '@id': `${canonicalHref}#faq`,
+      'mainEntity': faqList.map((item) => ({
+        '@type': 'Question',
+        'name': item.q,
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': item.a
+        }
+      }))
     }
-  }))
+  ]
 };
 ---
 
@@ -103,7 +181,10 @@ const faqSchema = {
 <meta name="description" content={t.siteDescription} />
 <meta name="keywords" content={t.siteKeywords} />
 <meta name="author" content="BulkResize" />
+<meta name="application-name" content="BulkResize" />
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+<meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalHref} />
@@ -128,9 +209,11 @@ const faqSchema = {
 <meta property="og:title" content={t.siteTitle} />
 <meta property="og:description" content={t.siteDescription} />
 <meta property="og:image" content={ogImageUrl} />
+<meta property="og:image:secure_url" content={ogImageUrl} />
+<meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="BulkResize - Client-Side Bulk Image Resizer" />
+<meta property="og:image:alt" content="BulkResize - Client-Side Bulk Image Resizer & Compressor" />
 <meta property="og:locale" content={locale === 'en' ? 'en_US' : locale} />
 
 <!-- Twitter Card -->
@@ -139,16 +222,18 @@ const faqSchema = {
 <meta name="twitter:title" content={t.siteTitle} />
 <meta name="twitter:description" content={t.siteDescription} />
 <meta name="twitter:image" content={ogImageUrl} />
+<meta name="twitter:image:alt" content="BulkResize - Client-Side Bulk Image Resizer & Compressor" />
 
 <!-- Icons and Manifest -->
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/favicon.svg" />
 <link rel="manifest" href="/site.webmanifest" />
 <meta name="theme-color" content="#F2C46A" />
+<meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 <meta name="apple-mobile-web-app-title" content="BulkResize" />
 
-<!-- JSON-LD Structured Data: WebApplication, SoftwareApplication, FAQPage -->
-<script type="application/ld+json" set:html={JSON.stringify(webApplicationSchema)} />
-<script type="application/ld+json" set:html={JSON.stringify(softwareApplicationSchema)} />
-<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+<!-- Unified Schema.org @graph (WebApplication, SoftwareApplication, FAQPage, BreadcrumbList, WebSite, Organization) -->
+<script type="application/ld+json" set:html={JSON.stringify(schemaGraph)} />

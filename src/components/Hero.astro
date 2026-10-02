@@ -1,5 +1,6 @@
 ---
 import { defaultLocale, translations, type SupportedLocale } from '../i18n/ui';
+import BreadcrumbNav from './BreadcrumbNav.astro';
 
 export interface Props {
   locale: SupportedLocale;
@@ -9,11 +10,14 @@ const { locale } = Astro.props;
 const t = translations[locale] || translations[defaultLocale];
 ---
 
-<section class="relative overflow-hidden pt-12 pb-6 md:pt-16 md:pb-8 bg-gradient-to-b from-[#f8ecd5]/60 via-[#FCF0DA] to-[#FCF0DA] dark:from-[#2a2422]/60 dark:via-[#231f1d] dark:to-[#231f1d]">
+<section class="relative overflow-hidden pt-8 pb-6 md:pt-12 md:pb-8 bg-gradient-to-b from-[#f8ecd5]/60 via-[#FCF0DA] to-[#FCF0DA] dark:from-[#2a2422]/60 dark:via-[#231f1d] dark:to-[#231f1d]">
   <!-- Subtle background glow decoration using palette colors -->
   <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-[#F2C46A]/15 dark:bg-[#F2C46A]/10 blur-[100px] pointer-events-none rounded-full" aria-hidden="true"></div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 flex flex-col items-center">
+    <!-- Breadcrumb Navigation -->
+    <BreadcrumbNav locale={locale} />
+
     <!-- Top Privacy Trust Badge -->
     <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-[#AEAC78]/25 text-[#4C4541] dark:text-[#FCF0DA] border border-[#AEAC78]/50 mb-6 shadow-sm">
       <span class="w-2 h-2 rounded-full bg-[#F2C46A] animate-pulse"></span>

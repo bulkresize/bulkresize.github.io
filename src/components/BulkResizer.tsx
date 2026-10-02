@@ -264,6 +264,7 @@ export default function BulkResizer({ locale = defaultLocale }: BulkResizerProps
               type="file"
               multiple
               accept="image/*"
+              aria-label="Upload image files for bulk resizing"
               className="hidden"
               onChange={(e) => {
                 if (e.target.files) handleFiles(e.target.files);
@@ -361,6 +362,7 @@ export default function BulkResizer({ locale = defaultLocale }: BulkResizerProps
                   min="5"
                   max="150"
                   step="5"
+                  aria-label="Percentage scaling factor"
                   value={settings.percentage}
                   onChange={(e) =>
                     setSettings((s) => ({ ...s, percentage: parseInt(e.target.value) || 50 }))
@@ -398,6 +400,7 @@ export default function BulkResizer({ locale = defaultLocale }: BulkResizerProps
                       type="number"
                       min="1"
                       max="10000"
+                      aria-label="Target image width in pixels"
                       value={settings.exactWidth}
                       onChange={(e) =>
                         setSettings((s) => ({
@@ -416,6 +419,7 @@ export default function BulkResizer({ locale = defaultLocale }: BulkResizerProps
                       type="number"
                       min="1"
                       max="10000"
+                      aria-label="Target image height in pixels"
                       value={settings.exactHeight}
                       onChange={(e) =>
                         setSettings((s) => ({
@@ -468,6 +472,7 @@ export default function BulkResizer({ locale = defaultLocale }: BulkResizerProps
                 </label>
                 <select
                   value={settings.presetId}
+                  aria-label="Choose social media or web dimension preset"
                   onChange={(e) => setSettings((s) => ({ ...s, presetId: e.target.value }))}
                   className="w-full px-3 py-2 text-sm rounded-xl border border-[#4C4541]/20 dark:border-[#FCF0DA]/20 bg-[#FCF0DA] dark:bg-[#25211f] text-[#4C4541] dark:text-[#FCF0DA] focus:outline-none focus:ring-2 focus:ring-[#F2C46A] font-medium"
                 >
@@ -537,6 +542,7 @@ export default function BulkResizer({ locale = defaultLocale }: BulkResizerProps
                   min="10"
                   max="100"
                   step="5"
+                  aria-label="Image quality compression percentage"
                   value={settings.quality}
                   onChange={(e) =>
                     setSettings((s) => ({ ...s, quality: parseInt(e.target.value) || 85 }))
@@ -556,6 +562,7 @@ export default function BulkResizer({ locale = defaultLocale }: BulkResizerProps
                 <input
                   type="text"
                   value={settings.prefix}
+                  aria-label="Output file name prefix"
                   placeholder={t.resizer.fileNamingPlaceholder}
                   onChange={(e) => setSettings((s) => ({ ...s, prefix: e.target.value }))}
                   className="w-full px-3 py-2 text-xs font-mono rounded-xl border border-[#4C4541]/20 dark:border-[#FCF0DA]/20 bg-[#FCF0DA] dark:bg-[#25211f] text-[#4C4541] dark:text-[#FCF0DA] focus:outline-none focus:ring-2 focus:ring-[#F2C46A]"

@@ -9,13 +9,13 @@ const { locale } = Astro.props;
 const t = translations[locale] || translations[defaultLocale];
 ---
 
-<section id="how-it-works" class="py-16 md:py-24 border-t border-[#4C4541]/15 dark:border-[#FCF0DA]/15 bg-[#f8ebd5]/50 dark:bg-[#201c1b]">
+<section id="how-it-works" aria-labelledby="how-it-works-heading" class="py-16 md:py-24 border-t border-[#4C4541]/15 dark:border-[#FCF0DA]/15 bg-[#f8ebd5]/50 dark:bg-[#201c1b]">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center max-w-3xl mx-auto mb-16">
       <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#AEAC78]/25 text-[#4C4541] dark:text-[#FCF0DA] border border-[#AEAC78]/50 mb-4">
         {t.howItWorks.sectionBadge}
       </span>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-[#4C4541] dark:text-[#FCF0DA] tracking-tight">
+      <h2 id="how-it-works-heading" class="text-3xl sm:text-4xl font-extrabold text-[#4C4541] dark:text-[#FCF0DA] tracking-tight">
         {t.howItWorks.title}
       </h2>
       <p class="mt-4 text-base sm:text-lg text-[#4C4541]/80 dark:text-[#FCF0DA]/80">
