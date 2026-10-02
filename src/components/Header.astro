@@ -13,14 +13,14 @@ const supportUrl = 'https://buymeacoffee.com/kisharadilz';
 ---
 
 <header class="sticky top-0 z-50 w-full backdrop-blur-md bg-[#FCF0DA]/90 dark:bg-[#231f1d]/90 border-b border-[#4C4541]/15 dark:border-[#FCF0DA]/15 transition-colors duration-200">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2 sm:gap-4">
     <!-- Brand Logo -->
     <a
       href={getLocalizedPath('/', locale)}
-      class="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F2C46A] rounded-lg p-1"
+      class="flex items-center gap-2.5 sm:gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F2C46A] rounded-xl p-1"
       aria-label="BulkResize Home"
     >
-      <div class="relative w-9 h-9 rounded-xl bg-[#4C4541] dark:bg-[#F2C46A] flex items-center justify-center shadow-md shadow-[#4C4541]/10 group-hover:scale-105 transition-transform duration-200">
+      <div class="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#4C4541] dark:bg-[#F2C46A] flex items-center justify-center shadow-md shadow-[#4C4541]/10 group-hover:scale-105 transition-transform duration-200 shrink-0">
         <svg class="w-5 h-5 text-[#FCF0DA] dark:text-[#4C4541]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
           <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
@@ -33,19 +33,19 @@ const supportUrl = 'https://buymeacoffee.com/kisharadilz';
       </div>
       <div class="flex flex-col">
         <div class="flex items-center gap-1.5">
-          <span class="text-xl font-bold tracking-tight text-[#4C4541] dark:text-[#FCF0DA] font-sans">
+          <span class="text-lg sm:text-xl font-extrabold tracking-tight text-[#4C4541] dark:text-[#FCF0DA] font-sans">
             Bulk<span class="text-[#c68a25] dark:text-[#F2C46A]">Resize</span>
           </span>
-          <span class="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider rounded-md bg-[#AEAC78]/20 text-[#4C4541] dark:text-[#FCF0DA] border border-[#AEAC78]/40">
-            Free & Local
+          <span class="hidden md:inline-block px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-md bg-[#AEAC78]/20 text-[#4C4541] dark:text-[#FCF0DA] border border-[#AEAC78]/40">
+            Free
           </span>
         </div>
-        <span class="text-[11px] text-[#4C4541]/70 dark:text-[#FCF0DA]/70 -mt-0.5 hidden md:inline">100% Client-Side Engine</span>
+        <span class="text-[11px] text-[#4C4541]/70 dark:text-[#FCF0DA]/70 -mt-0.5 hidden lg:inline">100% Client-Side Engine</span>
       </div>
     </a>
 
-    <!-- Quick Navigation Links (Desktop) -->
-    <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-[#4C4541]/80 dark:text-[#FCF0DA]/80">
+    <!-- Desktop Navigation Links (Large Screens Only) -->
+    <nav class="hidden lg:flex items-center gap-6 text-sm font-semibold text-[#4C4541]/80 dark:text-[#FCF0DA]/80">
       <a href="#workspace" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition-colors">Resizer</a>
       <a href="#features" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition-colors">{t.nav.features}</a>
       <a href="#how-it-works" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition-colors">{t.nav.howItWorks}</a>
@@ -53,20 +53,22 @@ const supportUrl = 'https://buymeacoffee.com/kisharadilz';
       <a href="#faq" class="hover:text-[#c68a25] dark:hover:text-[#F2C46A] transition-colors">{t.nav.faq}</a>
     </nav>
 
-    <!-- Header Actions (Language, Theme Toggle, Support CTA) -->
-    <div class="flex items-center gap-2 sm:gap-3">
-      <!-- Language Selector Dropdown -->
+    <!-- Header Actions (Icons-only on mobile & tab view) -->
+    <div class="flex items-center gap-1.5 sm:gap-2">
+      <!-- 1. Language Selector Dropdown (Icon only on mobile/tab) -->
       <div class="relative" id="lang-selector-container">
         <button
           type="button"
           id="lang-menu-btn"
           aria-expanded="false"
           aria-haspopup="true"
-          class="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold rounded-lg border border-[#4C4541]/15 dark:border-[#FCF0DA]/15 bg-[#f5e5c9] dark:bg-[#342e2b] text-[#4C4541] dark:text-[#FCF0DA] hover:bg-[#edd9b9] dark:hover:bg-[#443c38] transition focus:outline-none focus:ring-2 focus:ring-[#F2C46A]"
+          aria-label={t.nav.language}
+          title={t.nav.language}
+          class="flex items-center justify-center gap-1.5 p-2 sm:px-2.5 sm:py-2 text-xs font-bold rounded-xl border border-[#4C4541]/15 dark:border-[#FCF0DA]/15 bg-[#f5e5c9] dark:bg-[#342e2b] text-[#4C4541] dark:text-[#FCF0DA] hover:bg-[#edd9b9] dark:hover:bg-[#443c38] transition focus:outline-none focus:ring-2 focus:ring-[#F2C46A]"
         >
-          <span class="text-sm">{currentLanguage.flag}</span>
-          <span class="hidden sm:inline">{currentLanguage.label}</span>
-          <svg class="w-3.5 h-3.5 text-[#4C4541]/60 dark:text-[#FCF0DA]/60" viewBox="0 0 20 20" fill="currentColor">
+          <span class="text-base leading-none">{currentLanguage.flag}</span>
+          <span class="hidden lg:inline">{currentLanguage.label}</span>
+          <svg class="w-3.5 h-3.5 text-[#4C4541]/60 dark:text-[#FCF0DA]/60 hidden lg:inline" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
           </svg>
         </button>
@@ -74,7 +76,7 @@ const supportUrl = 'https://buymeacoffee.com/kisharadilz';
         <!-- Dropdown menu -->
         <div
           id="lang-dropdown-menu"
-          class="hidden absolute right-0 mt-2 w-44 rounded-xl border border-[#4C4541]/15 dark:border-[#FCF0DA]/15 bg-[#FCF0DA] dark:bg-[#342e2b] shadow-xl py-1.5 z-50 text-xs font-medium focus:outline-none animate-in fade-in-50 duration-150"
+          class="hidden absolute right-0 mt-2 w-44 rounded-2xl border border-[#4C4541]/15 dark:border-[#FCF0DA]/15 bg-[#FCF0DA] dark:bg-[#342e2b] shadow-xl py-1.5 z-50 text-xs font-semibold focus:outline-none animate-in fade-in-50 duration-150"
         >
           {Object.entries(languages).map(([code, info]) => {
             const isSelected = code === locale;
@@ -82,11 +84,11 @@ const supportUrl = 'https://buymeacoffee.com/kisharadilz';
             return (
               <a
                 href={targetPath}
-                class={`flex items-center justify-between px-3 py-2 text-[#4C4541] dark:text-[#FCF0DA] hover:bg-[#F2C46A]/20 dark:hover:bg-[#4C4541] transition ${
-                  isSelected ? 'bg-[#F2C46A]/30 dark:bg-[#4C4541] font-bold text-[#4C4541] dark:text-[#F2C46A]' : ''
+                class={`flex items-center justify-between px-3.5 py-2 text-[#4C4541] dark:text-[#FCF0DA] hover:bg-[#F2C46A]/20 dark:hover:bg-[#4C4541] transition ${
+                  isSelected ? 'bg-[#F2C46A]/30 dark:bg-[#4C4541] font-extrabold text-[#4C4541] dark:text-[#F2C46A]' : ''
                 }`}
               >
-                <span class="flex items-center gap-2">
+                <span class="flex items-center gap-2.5">
                   <span class="text-base">{info.flag}</span>
                   <span>{info.label}</span>
                 </span>
@@ -101,16 +103,16 @@ const supportUrl = 'https://buymeacoffee.com/kisharadilz';
         </div>
       </div>
 
-      <!-- Theme Switcher Button -->
+      <!-- 2. Theme Switcher (Icon Button) -->
       <button
         type="button"
         id="theme-toggle-btn"
         aria-label={t.nav.toggleTheme}
         title={t.nav.toggleTheme}
-        class="p-2 rounded-lg border border-[#4C4541]/15 dark:border-[#FCF0DA]/15 bg-[#f5e5c9] dark:bg-[#342e2b] text-[#4C4541] dark:text-[#FCF0DA] hover:bg-[#edd9b9] dark:hover:bg-[#443c38] transition focus:outline-none focus:ring-2 focus:ring-[#F2C46A]"
+        class="p-2 sm:p-2.5 rounded-xl border border-[#4C4541]/15 dark:border-[#FCF0DA]/15 bg-[#f5e5c9] dark:bg-[#342e2b] text-[#4C4541] dark:text-[#FCF0DA] hover:bg-[#edd9b9] dark:hover:bg-[#443c38] transition focus:outline-none focus:ring-2 focus:ring-[#F2C46A]"
       >
         <!-- Sun icon (shown in dark mode) -->
-        <svg id="theme-sun-icon" class="w-4 h-4 hidden text-[#F2C46A]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg id="theme-sun-icon" class="w-4 h-4 sm:w-4.5 sm:h-4.5 hidden text-[#F2C46A]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="5"></circle>
           <line x1="12" y1="1" x2="12" y2="3"></line>
           <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -122,24 +124,122 @@ const supportUrl = 'https://buymeacoffee.com/kisharadilz';
           <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
         </svg>
         <!-- Moon icon (shown in light mode) -->
-        <svg id="theme-moon-icon" class="w-4 h-4 hidden text-[#4C4541]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg id="theme-moon-icon" class="w-4 h-4 sm:w-4.5 sm:h-4.5 hidden text-[#4C4541]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
         </svg>
       </button>
 
-      <!-- Prominent Support Developer CTA -->
+      <!-- 3. Support Developer CTA (Icon only on mobile/tablet, full text on desktop) -->
       <a
         href={supportUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 sm:py-2 text-xs font-bold rounded-lg text-[#4C4541] bg-[#F2C46A] hover:bg-[#e5ab3f] shadow-sm hover:shadow transition transform active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#F2C46A]"
+        aria-label={t.nav.supportDev}
+        title={t.nav.supportDev}
+        class="inline-flex items-center gap-1.5 p-2 sm:p-2.5 lg:px-3.5 lg:py-2 text-xs font-bold rounded-xl text-[#4C4541] bg-[#F2C46A] hover:bg-[#e5ab3f] shadow-sm hover:shadow transition transform active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#F2C46A]"
       >
-        <svg class="w-4 h-4 text-[#4C4541]" viewBox="0 0 24 24" fill="currentColor">
+        <svg class="w-4 h-4 text-[#4C4541] shrink-0" viewBox="0 0 24 24" fill="currentColor">
           <path d="M2,21H20V19H2M20,8H18V5H20M20,3H4V13A4,4 0 0,0 8,17H14A4,4 0 0,0 18,13V10H20A2,2 0 0,0 22,8V5C22,3.89 21.1,3 20,3Z" />
         </svg>
-        <span class="whitespace-nowrap">{t.nav.supportDev}</span>
+        <span class="whitespace-nowrap hidden lg:inline">{t.nav.supportDev}</span>
       </a>
+
+      <!-- 4. Mobile & Tablet Menu Toggle Button (Icon only) -->
+      <button
+        type="button"
+        id="mobile-nav-toggle-btn"
+        aria-expanded="false"
+        aria-controls="mobile-nav-menu"
+        aria-label="Toggle navigation menu"
+        title="Menu"
+        class="lg:hidden p-2 sm:p-2.5 rounded-xl border border-[#4C4541]/15 dark:border-[#FCF0DA]/15 bg-[#f5e5c9] dark:bg-[#342e2b] text-[#4C4541] dark:text-[#FCF0DA] hover:bg-[#edd9b9] dark:hover:bg-[#443c38] transition focus:outline-none focus:ring-2 focus:ring-[#F2C46A]"
+      >
+        <!-- Hamburger Icon -->
+        <svg id="hamburger-icon" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        <!-- Close (X) Icon -->
+        <svg id="close-icon" class="w-4 h-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
     </div>
+  </div>
+
+  <!-- Mobile & Tablet Clean Dropdown Navigation (Hidden by default) -->
+  <div
+    id="mobile-nav-menu"
+    class="hidden lg:hidden border-t border-[#4C4541]/10 dark:border-[#FCF0DA]/10 bg-[#FCF0DA] dark:bg-[#231f1d] px-4 py-3 shadow-lg animate-in fade-in-50 duration-150"
+  >
+    <nav class="flex flex-col space-y-1 text-sm font-bold text-[#4C4541] dark:text-[#FCF0DA]">
+      <a
+        href="#workspace"
+        class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-[#f5e5c9] dark:hover:bg-[#342e2b] transition"
+      >
+        <span class="p-1.5 rounded-lg bg-[#F2C46A]/25 text-[#4C4541] dark:text-[#F2C46A]">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+        </span>
+        <span>Resizer Workspace</span>
+      </a>
+
+      <a
+        href="#features"
+        class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-[#f5e5c9] dark:hover:bg-[#342e2b] transition"
+      >
+        <span class="p-1.5 rounded-lg bg-[#AEAC78]/25 text-[#4C4541] dark:text-[#AEAC78]">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+        </span>
+        <span>{t.nav.features}</span>
+      </a>
+
+      <a
+        href="#how-it-works"
+        class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-[#f5e5c9] dark:hover:bg-[#342e2b] transition"
+      >
+        <span class="p-1.5 rounded-lg bg-[#F2C46A]/25 text-[#4C4541] dark:text-[#F2C46A]">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+        </span>
+        <span>{t.nav.howItWorks}</span>
+      </a>
+
+      <a
+        href="#presets"
+        class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-[#f5e5c9] dark:hover:bg-[#342e2b] transition"
+      >
+        <span class="p-1.5 rounded-lg bg-[#AEAC78]/25 text-[#4C4541] dark:text-[#AEAC78]">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="3" y1="9" x2="21" y2="9"></line>
+            <line x1="9" y1="21" x2="9" y2="9"></line>
+          </svg>
+        </span>
+        <span>{t.nav.presets}</span>
+      </a>
+
+      <a
+        href="#faq"
+        class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-[#f5e5c9] dark:hover:bg-[#342e2b] transition"
+      >
+        <span class="p-1.5 rounded-lg bg-[#F2C46A]/25 text-[#4C4541] dark:text-[#F2C46A]">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+        </span>
+        <span>{t.nav.faq}</span>
+      </a>
+    </nav>
   </div>
 </header>
 
@@ -198,6 +298,40 @@ const supportUrl = 'https://buymeacoffee.com/kisharadilz';
         localStorage.setItem('bulkresize_theme', 'dark');
       }
       updateThemeIcons();
+    });
+  }
+
+  // Mobile / Tab Navigation Menu Toggle
+  const mobileNavBtn = document.getElementById('mobile-nav-toggle-btn');
+  const mobileNavMenu = document.getElementById('mobile-nav-menu');
+  const hamburgerIcon = document.getElementById('hamburger-icon');
+  const closeIcon = document.getElementById('close-icon');
+
+  if (mobileNavBtn && mobileNavMenu) {
+    mobileNavBtn.addEventListener('click', () => {
+      const isHidden = mobileNavMenu.classList.contains('hidden');
+      if (isHidden) {
+        mobileNavMenu.classList.remove('hidden');
+        hamburgerIcon?.classList.add('hidden');
+        closeIcon?.classList.remove('hidden');
+        mobileNavBtn.setAttribute('aria-expanded', 'true');
+      } else {
+        mobileNavMenu.classList.add('hidden');
+        closeIcon?.classList.add('hidden');
+        hamburgerIcon?.classList.remove('hidden');
+        mobileNavBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Close mobile nav when clicking any nav link
+    const mobileLinks = mobileNavMenu.querySelectorAll('.mobile-nav-link');
+    mobileLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileNavMenu.classList.add('hidden');
+        closeIcon?.classList.add('hidden');
+        hamburgerIcon?.classList.remove('hidden');
+        mobileNavBtn.setAttribute('aria-expanded', 'false');
+      });
     });
   }
 </script>
