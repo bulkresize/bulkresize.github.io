@@ -24,6 +24,16 @@ const { locale } = Astro.props;
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Google tag (gtag.js) -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-QRXJ44Z82J"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-QRXJ44Z82J');
+    </script>
   </head>
   <body class="min-h-screen flex flex-col bg-[#FCF0DA] dark:bg-[#231f1d] text-[#4C4541] dark:text-[#FCF0DA] selection:bg-[#F2C46A] selection:text-[#4C4541] antialiased transition-colors duration-200">
     <Header locale={locale} />
