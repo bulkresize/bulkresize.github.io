@@ -6,13 +6,13 @@
 [![Tailwind CSS](https://img.shields.io/badge/Styled%20with-Tailwind%20CSS-4C4541.svg)](https://tailwindcss.com)
 [![Google Analytics](https://img.shields.io/badge/Analytics-gtag.js%20(G--QRXJ44Z82J)-F2C46A.svg)](https://marketingplatform.google.com/about/analytics/)
 [![SEO Score](https://img.shields.io/badge/Technical%20SEO-100%25%20Verified-AEAC78.svg)](#-technical-seo-architecture)
-[![Support Developer](https://img.shields.io/badge/Support-Buy%20Me%20a%20Coffee-F2C46A.svg)](https://buymeacoffee.com/kisharadilz)
+[![Support Developer](https://img.shields.io/badge/Support-Ko--fi-F2C46A.svg)](https://ko-fi.com/kishara)
 
 A privacy-first, zero-server batch image resizer, compressor, and format converter built with **Astro**, **React Islands**, and **Tailwind CSS**. Resize, compress, and convert hundreds of images simultaneously directly in your browser with zero file uploads and infinite confidentiality.
 
 - 🌐 **Live Website:** [https://bulkresize.github.io](https://bulkresize.github.io)
 - 📚 **Educational Guide:** [https://bulkresize.github.io/how-to-bulk-resize-compress-images-free/](https://bulkresize.github.io/how-to-bulk-resize-compress-images-free/)
-- ☕ **Developer Support:** [buymeacoffee.com/kisharadilz](https://buymeacoffee.com/kisharadilz)
+- ☕ **Developer Support:** [ko-fi.com/kishara](https://ko-fi.com/kishara)
 
 ---
 
@@ -60,7 +60,7 @@ BulkResize features a refined, distraction-free aesthetic with high-contrast typ
 - Zero server wait queues.
 
 ### 6. Mobile & Tablet Icons-Only Navigation
-- Ultra-clean header for small screens displaying only minimal action icons (Language selector, Theme toggle, BuyMeACoffee, Menu toggle).
+- Ultra-clean header for small screens displaying only minimal action icons (Language selector, Theme toggle, Ko-fi, Menu toggle).
 - Animated slide-down mobile drawer with quick navigation links to the workspace, features, educational guide, and FAQ.
 
 ### 7. Multi-Language Subpath Routing (i18n)
@@ -237,7 +237,7 @@ The repository contains an automated GitHub Actions deployment workflow at `.git
 
 If BulkResize saved you time, storage, or bandwidth, please consider supporting the project:
 
-👉 **[Buy Me a Coffee](https://buymeacoffee.com/kisharadilz)**
+👉 **[Support on Ko-fi](https://ko-fi.com/kishara)**
 
 ---
 

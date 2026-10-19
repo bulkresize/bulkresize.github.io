@@ -24,7 +24,7 @@ const checks = [
   { name: 'Hreflang fr', pass: html.includes('hreflang="fr"') },
   { name: 'Hreflang ja', pass: html.includes('hreflang="ja"') },
   { name: 'Hreflang x-default', pass: html.includes('hreflang="x-default"') },
-  { name: 'BuyMeACoffee Link', pass: html.includes('https://buymeacoffee.com/kisharadilz') },
+  { name: 'Ko-fi Link', pass: html.includes('https://ko-fi.com/kishara') },
   { name: 'Canonical Link', pass: html.includes('rel="canonical"') && html.includes('https://bulkresize.github.io/') },
 ];
 

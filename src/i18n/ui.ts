@@ -20,7 +20,7 @@ export const translations = {
       howItWorks: 'How It Works',
       presets: 'Presets',
       faq: 'FAQ',
-      supportDev: 'Buy Me a Coffee',
+      supportDev: 'Support on Ko-fi',
       toggleTheme: 'Toggle theme',
       language: 'Language'
     },
@@ -139,7 +139,7 @@ export const translations = {
       q4: 'How does the aspect ratio lock work?',
       a4: 'When the aspect ratio lock toggle is active, changing either the width or height automatically recalculates the opposite dimension to prevent photo stretching or distortion.',
       q5: 'Is BulkResize free to use for commercial projects?',
-      a5: 'Yes, BulkResize is completely free for personal and commercial use with zero subscription fees, ads, or watermarks. If you find it useful, you can support the developer on Buy Me a Coffee!',
+      a5: 'Yes, BulkResize is completely free for personal and commercial use with zero subscription fees, ads, or watermarks. If you find it useful, you can support the developer on Ko-fi!',
       q6: 'Can I use BulkResize on my iPhone, iPad, or Android phone?',
       a6: 'Yes! The entire interface is mobile-optimized with support for touch file pickers, responsive panels, and native mobile ZIP downloads.',
       q7: 'Why is client-side resizing faster than online server tools?',
@@ -293,7 +293,7 @@ export const translations = {
     footer: {
       builtWith: 'Desarrollado con Astro, React y Tailwind CSS. Procesamiento 100% del lado del cliente.',
       privacyNote: 'Aviso de Privacidad: La decodificación y compresión ocurre en la memoria local de tu navegador.',
-      supportDev: 'Apoyar al Creador en Buy Me a Coffee',
+      supportDev: 'Apoyar al Creador en Ko-fi',
       allRights: 'Licencia Abierta MIT • bulkresize.github.io'
     }
   },
@@ -436,7 +436,7 @@ export const translations = {
     footer: {
       builtWith: 'Criado com Astro, React e Tailwind CSS. 100% Processamento Local.',
       privacyNote: 'Aviso de Privacidade: Seus arquivos são processados na memória local do seu navegador.',
-      supportDev: 'Apoiar o Desenvolvedor no Buy Me a Coffee',
+      supportDev: 'Apoiar o Desenvolvedor no Ko-fi',
       allRights: 'Código Aberto Licença MIT • bulkresize.github.io'
     }
   },
@@ -579,7 +579,7 @@ export const translations = {
     footer: {
       builtWith: 'Erstellt mit Astro, React und Tailwind CSS. 100% lokale Verarbeitung.',
       privacyNote: 'Datenschutzhinweis: Alle Vorgänge finden im Arbeitsspeicher Ihres Endgeräts statt.',
-      supportDev: 'Entwickler unterstützen auf Buy Me a Coffee',
+      supportDev: 'Entwickler unterstützen auf Ko-fi',
       allRights: 'Open Source MIT-Lizenz • bulkresize.github.io'
     }
   },
@@ -722,7 +722,7 @@ export const translations = {
     footer: {
       builtWith: 'Conçu avec Astro, React et Tailwind CSS. 100% Côté Client.',
       privacyNote: 'Confidentialité : Toutes les opérations s’effectuent dans la mémoire vive de votre navigateur.',
-      supportDev: 'Soutenir le créateur sur Buy Me a Coffee',
+      supportDev: 'Soutenir le créateur sur Ko-fi',
       allRights: 'Code Source Ouvert Licence MIT • bulkresize.github.io'
     }
   },
@@ -865,7 +865,7 @@ export const translations = {
     footer: {
       builtWith: 'Astro, React, Tailwind CSS で構築。100%クライアント完結。',
       privacyNote: 'プライバシーポリシー: すべての画像処理はお使いの端末のブラウザ内で完結します。',
-      supportDev: 'Buy Me a Coffee で開発者を応援',
+      supportDev: 'Ko-fi で開発者を支援',
       allRights: 'オープンソース MITライセンス • bulkresize.github.io'
     }
   }
